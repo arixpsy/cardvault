@@ -1,5 +1,25 @@
 import { createApp } from "vue"
+import { createWebHistory, createRouter } from "vue-router"
 import "./style.css"
 import App from "./App.vue"
 
-createApp(App).mount("#app")
+import LoginView from "./pages/Login.vue"
+import DashboardView from "./pages/Dashboard.vue"
+import ExpensesView from "./pages/Expenses.vue"
+import CollectionView from "./pages/Collection.vue"
+import AnalyticsView from "./pages/Analytics.vue"
+
+const routes = [
+  { path: "/", component: LoginView },
+  { path: "/dashboard", component: DashboardView },
+  { path: "/expenses", component: ExpensesView },
+  { path: "/collection", component: CollectionView },
+  { path: "/analytics", component: AnalyticsView },
+]
+
+export const router = createRouter({
+  history: createWebHistory(),
+  routes,
+})
+
+createApp(App).use(router).mount("#app")
