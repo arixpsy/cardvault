@@ -42,6 +42,9 @@ importers:
 
   apps/frontend:
     dependencies:
+      '@clerk/vue':
+        specifier: ^2.0.7
+        version: 2.0.7(vue@3.5.31(typescript@5.9.3))
       vue:
         specifier: ^3.5.30
         version: 3.5.31(typescript@5.9.3)
@@ -91,6 +94,24 @@ packages:
   '@babel/types@7.29.0':
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
+
+  '@clerk/shared@4.3.2':
+    resolution: {integrity: sha512-tYYzdY4Fxb02TO4RHoLRFzEjXJn0iFDfoKhWtGyqf2AaIgkprTksunQtX0hnVssHMr3XD/E2S00Vrb+PzX3jCQ==}
+    engines: {node: '>=20.9.0'}
+    peerDependencies:
+      react: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+      react-dom: ^18.0.0 || ~19.0.3 || ~19.1.4 || ~19.2.3 || ~19.3.0-0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
+  '@clerk/vue@2.0.7':
+    resolution: {integrity: sha512-OjULW2/59bbnrxYJBw885Yf1SgqyX15zLZNaA3Sw6GpVzdWk/ktHjla+fXVfMyYZq+qKXl37cY9bF01VKY3lpw==}
+    engines: {node: '>=20.9.0'}
+    peerDependencies:
+      vue: ^3.2.0
 
   '@cloudflare/kv-asset-handler@0.4.2':
     resolution: {integrity: sha512-SIOD2DxrRRwQ+jgzlXCqoEFiKOFqaPjhnNTGKXSRLvp1HiOvapLaFG2kEr9dYQTYe8rKrd9uvDUzmAITeNyaHQ==}
@@ -814,6 +835,9 @@ packages:
   '@speed-highlight/core@1.2.15':
     resolution: {integrity: sha512-BMq1K3DsElxDWawkX6eLg9+CKJrTVGCBAWVuHXVUV2u0s2711qiChLSId6ikYPfxhdYocLNt3wWwSvDiTvFabw==}
 
+  '@tanstack/query-core@5.90.16':
+    resolution: {integrity: sha512-MvtWckSVufs/ja463/K4PyJeqT+HMlJWtw6PrCpywznd2NSgO3m4KwO9RqbFqGg6iDE8vVMFWMeQI4Io3eEYww==}
+
   '@turbo/darwin-64@2.8.21':
     resolution: {integrity: sha512-kfGoM0Iw8ZNZpbds+4IzOe0hjvHldqJwUPRAjXJi3KBxg/QOZL95N893SRoMtf2aJ+jJ3dk32yPkp8rvcIjP9g==}
     cpu: [x64]
@@ -925,6 +949,10 @@ packages:
   csstype@3.2.3:
     resolution: {integrity: sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ==}
 
+  dequal@2.0.3:
+    resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
+    engines: {node: '>=6'}
+
   detect-libc@2.1.2:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
@@ -958,9 +986,16 @@ packages:
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
 
+  glob-to-regexp@0.4.1:
+    resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
+
   hono@4.12.9:
     resolution: {integrity: sha512-wy3T8Zm2bsEvxKZM5w21VdHDDcwVS1yUFFY6i8UobSsKfFceT7TOwhbhfKsDyx7tYQlmRM5FLpIuYvNFyjctiA==}
     engines: {node: '>=16.9.0'}
+
+  js-cookie@3.0.5:
+    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
+    engines: {node: '>=14'}
 
   kleur@4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
@@ -1107,6 +1142,9 @@ packages:
   source-map-js@1.2.1:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
+
+  std-env@3.10.0:
+    resolution: {integrity: sha512-5GS12FdOZNliM5mAOxFRg7Ir0pWz8MdpYm6AY6VPkGpbA7ZzmbzNcBJQ0GPvvyWgcY7QAhCgf9Uy89I03faLkg==}
 
   supports-color@10.2.2:
     resolution: {integrity: sha512-SS+jx45GF1QjgEXQx4NJZV9ImqmO2NPz5FNsIHrsDjh2YsHnawpan7SNQ1o8NuhrbHZy9AZhIoCUiCeaW/C80g==}
@@ -1271,6 +1309,22 @@ snapshots:
     dependencies:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
+
+  '@clerk/shared@4.3.2':
+    dependencies:
+      '@tanstack/query-core': 5.90.16
+      dequal: 2.0.3
+      glob-to-regexp: 0.4.1
+      js-cookie: 3.0.5
+      std-env: 3.10.0
+
+  '@clerk/vue@2.0.7(vue@3.5.31(typescript@5.9.3))':
+    dependencies:
+      '@clerk/shared': 4.3.2
+      vue: 3.5.31(typescript@5.9.3)
+    transitivePeerDependencies:
+      - react
+      - react-dom
 
   '@cloudflare/kv-asset-handler@0.4.2': {}
 
@@ -1705,6 +1759,8 @@ snapshots:
 
   '@speed-highlight/core@1.2.15': {}
 
+  '@tanstack/query-core@5.90.16': {}
+
   '@turbo/darwin-64@2.8.21':
     optional: true
 
@@ -1829,6 +1885,8 @@ snapshots:
 
   csstype@3.2.3: {}
 
+  dequal@2.0.3: {}
+
   detect-libc@2.1.2: {}
 
   entities@7.0.1: {}
@@ -1873,7 +1931,11 @@ snapshots:
   fsevents@2.3.3:
     optional: true
 
+  glob-to-regexp@0.4.1: {}
+
   hono@4.12.9: {}
+
+  js-cookie@3.0.5: {}
 
   kleur@4.1.5: {}
 
@@ -2067,6 +2129,8 @@ snapshots:
       '@img/sharp-win32-x64': 0.34.5
 
   source-map-js@1.2.1: {}
+
+  std-env@3.10.0: {}
 
   supports-color@10.2.2: {}
 
