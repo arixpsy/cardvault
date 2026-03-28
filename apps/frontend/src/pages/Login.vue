@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 import LoginPanel from "../components/Auth/LoginPanel.vue"
 </script>
 
@@ -13,7 +13,7 @@ import LoginPanel from "../components/Auth/LoginPanel.vue"
   <LoginPanel />
 </template>
 
-<style lang="css">
+<style lang="css" scoped>
 :root {
   --clerk-color-primary: #2f3037;
   --clerk-color-primary-foreground: #ffffff;
@@ -98,7 +98,9 @@ import LoginPanel from "../components/Auth/LoginPanel.vue"
   background: linear-gradient(145deg, var(--dark), var(--dark2));
   transform: rotate(-18deg);
   opacity: 0;
-  animation: card-fade-in-1 0.8s ease 0.6s both, drift1 8s ease-in-out 1.4s infinite;
+  animation:
+    card-fade-in-1 0.8s ease 0.6s both,
+    drift1 8s ease-in-out 1.4s infinite;
 }
 .float-card-2 {
   bottom: 12%;
@@ -108,7 +110,9 @@ import LoginPanel from "../components/Auth/LoginPanel.vue"
   width: 100px;
   height: 140px;
   opacity: 0;
-  animation: card-fade-in-2 0.8s ease 0.8s both, drift2 9s ease-in-out 1.6s infinite;
+  animation:
+    card-fade-in-2 0.8s ease 0.8s both,
+    drift2 9s ease-in-out 1.6s infinite;
 }
 .float-card-3 {
   top: 18%;
@@ -118,7 +122,9 @@ import LoginPanel from "../components/Auth/LoginPanel.vue"
   width: 90px;
   height: 126px;
   opacity: 0;
-  animation: card-fade-in-3 0.8s ease 1s both, drift3 7s ease-in-out 1.8s infinite;
+  animation:
+    card-fade-in-3 0.8s ease 1s both,
+    drift3 7s ease-in-out 1.8s infinite;
 }
 .float-card-4 {
   bottom: 18%;
@@ -128,7 +134,9 @@ import LoginPanel from "../components/Auth/LoginPanel.vue"
   width: 80px;
   height: 112px;
   opacity: 0;
-  animation: card-fade-in-4 0.8s ease 1.2s both, drift4 10s ease-in-out 2s infinite;
+  animation:
+    card-fade-in-4 0.8s ease 1.2s both,
+    drift4 10s ease-in-out 2s infinite;
 }
 
 /* Card inner details */
@@ -156,10 +164,38 @@ import LoginPanel from "../components/Auth/LoginPanel.vue"
   z-index: 1;
 }
 
-@keyframes card-fade-in-1 { from { opacity: 0 } to { opacity: 0.55 } }
-@keyframes card-fade-in-2 { from { opacity: 0 } to { opacity: 0.45 } }
-@keyframes card-fade-in-3 { from { opacity: 0 } to { opacity: 0.40 } }
-@keyframes card-fade-in-4 { from { opacity: 0 } to { opacity: 0.35 } }
+@keyframes card-fade-in-1 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.55;
+  }
+}
+@keyframes card-fade-in-2 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.45;
+  }
+}
+@keyframes card-fade-in-3 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.4;
+  }
+}
+@keyframes card-fade-in-4 {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.35;
+  }
+}
 
 @keyframes drift1 {
   0%,

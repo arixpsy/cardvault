@@ -59,7 +59,7 @@ import { SignInButton } from "@clerk/vue"
   </div>
 </template>
 
-<style lang="css">
+<style lang="css" scoped>
 .login-panel {
   position: relative;
   z-index: 10;

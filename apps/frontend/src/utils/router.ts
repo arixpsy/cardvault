@@ -5,6 +5,7 @@ import DashboardView from "../pages/Dashboard.vue"
 import ExpensesView from "../pages/Expenses.vue"
 import CollectionView from "../pages/Collection.vue"
 import AnalyticsView from "../pages/Analytics.vue"
+import { Routes } from "./routes"
 
 const routes = [
   { path: "/", component: LoginView },
@@ -13,10 +14,10 @@ const routes = [
     path: "/",
     component: Authenticated,
     children: [
-      { path: "/dashboard", component: DashboardView },
-      { path: "/expenses", component: ExpensesView },
-      { path: "/collection", component: CollectionView },
-      { path: "/analytics", component: AnalyticsView },
+      { path: Routes.DASHBOARD, component: DashboardView },
+      { path: Routes.EXPENSES, component: ExpensesView },
+      { path: Routes.COLLECTION, component: CollectionView },
+      { path: Routes.ANALYTICS, component: AnalyticsView },
     ],
   },
 ]

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { watch } from "vue"
 import { useAuth } from "@clerk/vue"
+import MainLayout from "../Layout/MainLayout.vue"
 import { router } from "../../utils/router"
 
 const { isSignedIn, isLoaded } = useAuth()
@@ -15,5 +16,7 @@ watch(isSignedIn, (newState) => {
 <template>
   <div v-if="!isLoaded">Loading</div>
 
-  <router-view v-else />
+  <MainLayout v-else>
+    <router-view />
+  </MainLayout>
 </template>
