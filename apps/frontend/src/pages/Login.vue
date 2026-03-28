@@ -97,46 +97,38 @@ import LoginPanel from "../components/Auth/LoginPanel.vue"
   left: 8%;
   background: linear-gradient(145deg, var(--dark), var(--dark2));
   transform: rotate(-18deg);
-  animation: drift1 8s ease-in-out infinite;
   opacity: 0;
-  animation-delay: 0.6s;
-  animation-fill-mode: forwards;
+  animation: card-fade-in-1 0.8s ease 0.6s both, drift1 8s ease-in-out 1.4s infinite;
 }
 .float-card-2 {
   bottom: 12%;
   right: 6%;
   background: linear-gradient(145deg, var(--accent), #4040f0);
   transform: rotate(12deg);
-  animation: drift2 9s ease-in-out infinite;
   width: 100px;
   height: 140px;
   opacity: 0;
-  animation-delay: 0.8s;
-  animation-fill-mode: forwards;
+  animation: card-fade-in-2 0.8s ease 0.8s both, drift2 9s ease-in-out 1.6s infinite;
 }
 .float-card-3 {
   top: 18%;
   right: 12%;
   background: linear-gradient(145deg, var(--gold), var(--gold2));
   transform: rotate(8deg);
-  animation: drift3 7s ease-in-out infinite;
   width: 90px;
   height: 126px;
   opacity: 0;
-  animation-delay: 1s;
-  animation-fill-mode: forwards;
+  animation: card-fade-in-3 0.8s ease 1s both, drift3 7s ease-in-out 1.8s infinite;
 }
 .float-card-4 {
   bottom: 18%;
   left: 10%;
   background: linear-gradient(145deg, #1a8c5a, #20b070);
   transform: rotate(-6deg);
-  animation: drift4 10s ease-in-out infinite;
   width: 80px;
   height: 112px;
   opacity: 0;
-  animation-delay: 1.2s;
-  animation-fill-mode: forwards;
+  animation: card-fade-in-4 0.8s ease 1.2s both, drift4 10s ease-in-out 2s infinite;
 }
 
 /* Card inner details */
@@ -164,48 +156,45 @@ import LoginPanel from "../components/Auth/LoginPanel.vue"
   z-index: 1;
 }
 
+@keyframes card-fade-in-1 { from { opacity: 0 } to { opacity: 0.55 } }
+@keyframes card-fade-in-2 { from { opacity: 0 } to { opacity: 0.45 } }
+@keyframes card-fade-in-3 { from { opacity: 0 } to { opacity: 0.40 } }
+@keyframes card-fade-in-4 { from { opacity: 0 } to { opacity: 0.35 } }
+
 @keyframes drift1 {
   0%,
   100% {
     transform: rotate(-18deg) translateY(0px);
-    opacity: 0.55;
   }
   50% {
     transform: rotate(-15deg) translateY(-14px);
-    opacity: 0.65;
   }
 }
 @keyframes drift2 {
   0%,
   100% {
     transform: rotate(12deg) translateY(0px);
-    opacity: 0.45;
   }
   50% {
     transform: rotate(15deg) translateY(-18px);
-    opacity: 0.55;
   }
 }
 @keyframes drift3 {
   0%,
   100% {
     transform: rotate(8deg) translateY(0px);
-    opacity: 0.4;
   }
   50% {
     transform: rotate(5deg) translateY(-10px);
-    opacity: 0.5;
   }
 }
 @keyframes drift4 {
   0%,
   100% {
     transform: rotate(-6deg) translateY(0px);
-    opacity: 0.35;
   }
   50% {
     transform: rotate(-9deg) translateY(-12px);
-    opacity: 0.45;
   }
 }
 </style>

@@ -232,7 +232,6 @@ import { SignInButton } from "@clerk/vue"
   color: var(--ink3);
 }
 
-/* ─── RESPONSIVE ─── */
 @media (max-width: 520px) {
   .brand-title {
     font-size: 48px;
@@ -241,9 +240,6 @@ import { SignInButton } from "@clerk/vue"
   .form-card {
     padding: 32px 24px 28px;
     border-radius: 16px;
-  }
-  .float-card {
-    display: none;
   }
 }
 </style>
