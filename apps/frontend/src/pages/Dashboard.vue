@@ -1,29 +1,28 @@
 <script setup lang="ts">
 import CardCarousel from "../components/Dashboard/CardCarousel.vue"
 import StatsView from "../components/Dashboard/StatsView.vue"
+import DashboardSparkles from "../components/Dashboard/DashboardSparkles.vue"
+import PageContent from "../components/Common/PageContent.vue"
+import PageHeader from "../components/Common/PageHeader.vue"
 </script>
 
 <template>
   <div class="hero">
-    <div class="hero-bg-text">CARDVAULT</div>
+    <p class="hero-bg-text">CARDVAULT</p>
 
-    <!-- Decorative sparkles -->
-    <div class="sparkle" style="top: 15%; left: 12%; font-size: 20px; animation-delay: 0s">✦</div>
-    <div class="sparkle" style="top: 25%; right: 14%; font-size: 14px; animation-delay: 0.7s">
-      ✦
-    </div>
-    <div class="sparkle" style="top: 60%; left: 8%; font-size: 10px; animation-delay: 1.2s">✦</div>
-    <div class="sparkle" style="top: 55%; right: 10%; font-size: 18px; animation-delay: 0.4s">
-      ✦
-    </div>
+    <DashboardSparkles />
 
-    <div class="hero-label">— YOUR COLLECTION —</div>
-    <div class="hero-title">CARD<span>VAULT</span></div>
+    <p class="hero-label">— YOUR COLLECTION —</p>
+    <p class="hero-title">CARD<span>VAULT</span></p>
 
     <CardCarousel />
 
     <StatsView />
   </div>
+
+  <PageContent>
+    <PageHeader title="Overview" description="Recent Activity & Stats" />
+  </PageContent>
 </template>
 
 <style lang="css" scoped>
@@ -39,7 +38,7 @@ import StatsView from "../components/Dashboard/StatsView.vue"
 
 .hero-bg-text {
   position: absolute;
-  bottom: -10px;
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--display);
@@ -74,27 +73,13 @@ import StatsView from "../components/Dashboard/StatsView.vue"
   color: var(--accent);
 }
 
-.sparkle {
-  position: absolute;
-  pointer-events: none;
-  animation: sparkleAnim 2s ease-in-out infinite;
-}
-
-@keyframes sparkleAnim {
-  0%,
-  100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.3);
-  }
-}
-
 @media (max-width: 640px) {
   .hero {
     height: calc(100svh - 60px);
+  }
+
+  .hero-bg-text {
+    bottom: 0px;
   }
 }
 </style>

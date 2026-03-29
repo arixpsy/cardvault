@@ -3,14 +3,16 @@ import LoginPanel from "../components/Auth/LoginPanel.vue"
 </script>
 
 <template>
-  <div class="bg-text">CARDVAULT</div>
+  <div class="wrapper">
+    <div class="bg-text">CARDVAULT</div>
 
-  <div class="float-card float-card-1"><div class="card-circle"></div></div>
-  <div class="float-card float-card-2"><div class="card-circle"></div></div>
-  <div class="float-card float-card-3"><div class="card-circle"></div></div>
-  <div class="float-card float-card-4"><div class="card-circle"></div></div>
+    <div class="float-card float-card-1"><div class="card-circle"></div></div>
+    <div class="float-card float-card-2"><div class="card-circle"></div></div>
+    <div class="float-card float-card-3"><div class="card-circle"></div></div>
+    <div class="float-card float-card-4"><div class="card-circle"></div></div>
 
-  <LoginPanel />
+    <LoginPanel />
+  </div>
 </template>
 
 <style lang="css" scoped>
@@ -50,6 +52,12 @@ import LoginPanel from "../components/Auth/LoginPanel.vue"
   --clerk-color-modal-backdrop: #000000;
   --clerk-border-radius: 0.375rem;
   --clerk-spacing: 1rem;
+}
+
+.wrapper {
+  display: grid;
+  place-items: center;
+  height: 100%;
 }
 
 .bg-text {
