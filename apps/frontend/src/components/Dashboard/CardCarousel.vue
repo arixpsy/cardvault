@@ -13,22 +13,22 @@ const items = [
     src: "https://assets.tcgdex.net/en/me/me02.5/256/low.webp",
   },
   {
-    src: "https://assets.tcgdex.net/en/me/me02.5/276/low.webp",
+    src: "https://assets.tcgdex.net/en/me/me02.5/286/low.webp",
   },
   {
-    src: "https://assets.tcgdex.net/en/me/me02.5/276/low.webp",
+    src: "https://assets.tcgdex.net/en/me/me02.5/216/low.webp",
   },
   {
-    src: "https://assets.tcgdex.net/en/me/me02.5/276/low.webp",
+    src: "https://assets.tcgdex.net/en/me/me02.5/136/low.webp",
   },
   {
     src: "https://assets.tcgdex.net/en/me/me02.5/176/low.webp",
   },
   {
-    src: "https://assets.tcgdex.net/en/me/me02.5/276/low.webp",
+    src: "https://assets.tcgdex.net/en/me/me02.5/246/low.webp",
   },
   {
-    src: "https://assets.tcgdex.net/en/me/me02.5/276/low.webp",
+    src: "https://assets.tcgdex.net/en/me/me02.5/076/low.webp",
   },
 ]
 </script>
