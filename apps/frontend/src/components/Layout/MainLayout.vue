@@ -6,13 +6,16 @@ import ProfileImage from "./ProfileImage.vue"
 <template>
   <ProfileImage />
   <NavigationBar />
-  <div class="content-wrapper"><slot /></div>
+  <div class="content-wrapper">
+    <div><slot /></div>
+  </div>
 </template>
 
 <style lang="css" scoped>
 .content-wrapper {
   margin-left: 72px;
-  min-height: 100svh;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 @media (max-width: 640px) {

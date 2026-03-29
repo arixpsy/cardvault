@@ -5,7 +5,7 @@ import DashboardView from "../pages/Dashboard.vue"
 import ExpensesView from "../pages/Expenses.vue"
 import CollectionView from "../pages/Collection.vue"
 import AnalyticsView from "../pages/Analytics.vue"
-import SettingsView from '../pages/Settings.vue'
+import SettingsView from "../pages/Settings.vue"
 import { Routes } from "./routes"
 
 const routes = [
