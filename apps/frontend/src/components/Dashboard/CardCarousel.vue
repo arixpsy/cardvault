@@ -37,7 +37,7 @@ const items = [
   <div class="scene">
     <div class="carousel">
       <div v-for="(item, index) in items" class="item" :style="{ '--position': index + 1 }">
-        <img :src="item.src" alt="" />
+        <img :src="item.src" alt="" loading="lazy"/>
       </div>
     </div>
   </div>
@@ -51,6 +51,7 @@ const items = [
   text-align: center;
   overflow: hidden;
   position: relative;
+  perspective: 500px;
 }
 
 .scene .carousel {
@@ -60,7 +61,6 @@ const items = [
   top: 25%;
   left: calc(50% - 50px);
   transform-style: preserve-3d;
-  transform: perspective(500px);
   animation: autoRun 30s linear infinite;
 }
 
@@ -78,10 +78,10 @@ const items = [
 
 @keyframes autoRun {
   from {
-    transform: perspective (1800px) rotateY(0deg);
+    transform: rotateY(0deg);
   }
   to {
-    transform: perspective(1808px) rotateY(360deg);
+    transform: rotateY(360deg);
   }
 }
 </style>

@@ -84,6 +84,7 @@
     position: relative;
     height: auto;
     flex-wrap: wrap;
+    border-radius: 10px;
   }
 
   .stat-cell {
