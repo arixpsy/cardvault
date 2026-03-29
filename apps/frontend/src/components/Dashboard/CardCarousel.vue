@@ -37,7 +37,7 @@ const items = [
   <div class="scene">
     <div class="carousel">
       <div v-for="(item, index) in items" class="item" :style="{ '--position': index + 1 }">
-        <img :src="item.src" alt="" loading="lazy"/>
+        <img :src="item.src" alt="" loading="lazy" />
       </div>
     </div>
   </div>
