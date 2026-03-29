@@ -50,7 +50,7 @@ const NavigationBarOptions = [
   align-items: center;
   flex-shrink: 0;
   width: 72px;
-  padding: 20px 0;
+  padding: 70px 0 20px 0;
   gap: 8px;
   background: var(--dark);
 }
