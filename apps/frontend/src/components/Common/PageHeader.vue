@@ -46,4 +46,20 @@ defineProps({
   margin-top: 6px;
   text-transform: uppercase;
 }
+
+@media (max-width: 640px) {
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .page-title {
+    font-size: 36px;
+  }
+
+  .page-subtitle {
+    font-size: 10px;
+  }
+}
 </style>

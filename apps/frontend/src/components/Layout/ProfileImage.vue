@@ -42,4 +42,15 @@ img,
     background-position: -200% 0;
   }
 }
+
+@media (max-width: 640px) {
+  img,
+  .skeleton {
+    top: 35px;
+    left: initial;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+  }
+}
 </style>
