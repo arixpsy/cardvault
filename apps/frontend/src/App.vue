@@ -6,7 +6,7 @@
 
 <style lang="css" scoped>
 main {
-  height: 100svh;
+  height: 100dvh;
   width: 100vw;
 }
 </style>

@@ -7,7 +7,7 @@ import ProfileImage from "./ProfileImage.vue"
   <ProfileImage />
   <NavigationBar />
   <div class="content-wrapper">
-    <div><slot /></div>
+    <slot />
   </div>
 </template>
 

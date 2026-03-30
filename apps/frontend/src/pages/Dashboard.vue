@@ -27,7 +27,7 @@ import PageHeader from "../components/Common/PageHeader.vue"
 
 <style lang="css" scoped>
 .hero {
-  height: 100svh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -75,7 +75,7 @@ import PageHeader from "../components/Common/PageHeader.vue"
 
 @media (max-width: 640px) {
   .hero {
-    height: calc(100svh - 60px);
+    height: calc(100dvh - 60px);
   }
 
   .hero-bg-text {
