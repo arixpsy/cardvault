@@ -46,7 +46,7 @@ img,
 @media (max-width: 640px) {
   img,
   .skeleton {
-    top: 35px;
+    top: 28px;
     left: initial;
     right: 20px;
     width: 40px;
