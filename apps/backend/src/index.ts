@@ -84,4 +84,6 @@ app.doc("/doc", {
 
 app.get("/ui", swaggerUI({ url: "/doc" }))
 
+export type AppType = typeof app
+
 export default app
