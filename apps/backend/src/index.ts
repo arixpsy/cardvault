@@ -48,7 +48,7 @@ const route = createRoute({
   },
 })
 
-const app = new OpenAPIHono({
+const app = new OpenAPIHono<{ Bindings: CloudflareBindings }>({
   defaultHook: (result, c) => {
     if (!result.success) {
       return c.json(
