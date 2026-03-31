@@ -29,6 +29,9 @@ importers:
       '@hono/zod-openapi':
         specifier: ^1.2.4
         version: 1.2.4(hono@4.12.9)(zod@4.3.6)
+      consola:
+        specifier: ^3.4.2
+        version: 3.4.2
       hono:
         specifier: ^4.12.9
         version: 4.12.9
@@ -48,6 +51,9 @@ importers:
       '@lucide/vue':
         specifier: ^1.7.0
         version: 1.7.0(vue@3.5.31(typescript@5.9.3))
+      '@repo/backend':
+        specifier: workspace:*
+        version: link:../backend
       vue:
         specifier: ^3.5.30
         version: 3.5.31(typescript@5.9.3)
@@ -949,6 +955,10 @@ packages:
 
   blake3-wasm@2.1.5:
     resolution: {integrity: sha512-F1+K8EbfOZE49dtoPtmxUQrpXaBIl3ICvasLh+nJta0xkz+9kF/7uet9fLnwKqhDrmj6g+6K3Tw9yQPUg2ka5g==}
+
+  consola@3.4.2:
+    resolution: {integrity: sha512-5IKcdX0nnYavi6G7TtOhwkYzyjfJlatbjMjuLSfE2kYT5pMDOilZ4OvMhi637CcDICTmz3wARPoyhqyX1Y+XvA==}
+    engines: {node: ^14.18.0 || >=16.10.0}
 
   cookie@1.1.1:
     resolution: {integrity: sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==}
@@ -1892,6 +1902,8 @@ snapshots:
   alien-signals@3.1.2: {}
 
   blake3-wasm@2.1.5: {}
+
+  consola@3.4.2: {}
 
   cookie@1.1.1: {}
 

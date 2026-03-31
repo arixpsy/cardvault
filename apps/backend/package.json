@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "@repo/backend",
   "type": "module",
   "exports": {
     "./hc": {
@@ -10,7 +10,7 @@
     }
   },
   "scripts": {
-    "dev": "pnpm --filter backend --parallel \"/^dev:.*/\"",
+    "dev": "pnpm --filter @repo/backend --parallel \"/^dev:.*/\"",
     "dev:tsc": "tsc -p tsconfig.build.json --watch",
     "dev:wrangler": "wrangler dev",
     "deploy": "wrangler deploy --minify",
@@ -21,6 +21,7 @@
   "dependencies": {
     "@hono/swagger-ui": "^0.6.1",
     "@hono/zod-openapi": "^1.2.4",
+    "consola": "^3.4.2",
     "hono": "^4.12.9",
     "zod": "^4.3.6"
   },
