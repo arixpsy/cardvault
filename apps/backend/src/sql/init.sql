@@ -16,12 +16,6 @@ CREATE TABLE IF NOT EXISTS cards (
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
-CREATE TYPE expense_category AS ENUM (
-    'sealed',
-    'singles',
-    'supplies',
-    'others'
-);
 
 CREATE TABLE IF NOT EXISTS expenses (
     id UUID PRIMARY KEY,
@@ -33,17 +27,3 @@ CREATE TABLE IF NOT EXISTS expenses (
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
-
-CREATE TABLE IF NOT EXISTS exchange_rate_cache (
-    id INTEGER PRIMARY KEY DEFAULT 1,
-    rate DECIMAL(10, 6) NOT NULL,
-    cached_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    CONSTRAINT single_row CHECK (id = 1)
-);
-
--- Indexes for common query patterns
-CREATE INDEX idx_cards_set_id ON cards (set_id);
-CREATE INDEX idx_cards_date_added ON cards (date_added);
-CREATE INDEX idx_cards_is_art_collection ON cards (is_art_collection);
-CREATE INDEX idx_expenses_category ON expenses (category);
-CREATE INDEX idx_expenses_date ON expenses (date);
