@@ -72,6 +72,9 @@ importers:
       '@repo/backend':
         specifier: workspace:*
         version: link:../backend
+      '@tcgdex/sdk':
+        specifier: ^2.7.1
+        version: 2.7.1
       vue:
         specifier: ^3.5.30
         version: 3.5.31(typescript@5.9.3)
@@ -121,6 +124,15 @@ packages:
   '@babel/types@7.29.0':
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
+
+  '@cachex/core@1.0.1':
+    resolution: {integrity: sha512-sHynwjF9hKIvwg8rTUdvA7MOUMcUC5Mq0dpynPBILRS+IPvsHcE4Cb2uRSs0/I2nxO7NQp9p+xHYistdfJJSwg==}
+
+  '@cachex/memory@1.0.1':
+    resolution: {integrity: sha512-KWUTdCCXhIlAkJaVZMhUh9kD0uq8PxC3Z34Q3lMGZOAV6FXP/cOMW89ALrWX3VkoRrrM4R6MIMO+amZNOvEqgw==}
+
+  '@cachex/web-storage@1.0.1':
+    resolution: {integrity: sha512-E8Xa9qDZgNgr+lcj3eixowg7PH2CVZbp3huuoc5xVVTtwYrZi5YqbHBG12yG3r6C6Fts/2Yoq6cbVBSm6c8VRA==}
 
   '@clerk/shared@4.3.2':
     resolution: {integrity: sha512-tYYzdY4Fxb02TO4RHoLRFzEjXJn0iFDfoKhWtGyqf2AaIgkprTksunQtX0hnVssHMr3XD/E2S00Vrb+PzX3jCQ==}
@@ -189,6 +201,9 @@ packages:
 
   '@drizzle-team/brocli@0.10.2':
     resolution: {integrity: sha512-z33Il7l5dKjUgGULTqBsQBQwckHh5AbIuxhdsIxDDiZAzBOrZO6q9ogcWC65kU382AfynTfgNumVcNIjuIua6w==}
+
+  '@dzeio/object-util@1.9.2':
+    resolution: {integrity: sha512-L3EBaHnDmf/+LAC61eCgWzcGXjbaOoFB4ml3eeOFxKlVlO6IZ2BpdstoqgAfLNKqdy4Ixp7TlP5z4ohdPxfSLg==}
 
   '@emnapi/core@1.9.1':
     resolution: {integrity: sha512-mukuNALVsoix/w1BJwFzwXBN/dHeejQtuVzcDsfOEsdpCumXb/E9j8w11h5S54tT1xhifGfbbSm/ICrObRb3KA==}
@@ -1173,6 +1188,10 @@ packages:
   '@tanstack/query-core@5.90.16':
     resolution: {integrity: sha512-MvtWckSVufs/ja463/K4PyJeqT+HMlJWtw6PrCpywznd2NSgO3m4KwO9RqbFqGg6iDE8vVMFWMeQI4Io3eEYww==}
 
+  '@tcgdex/sdk@2.7.1':
+    resolution: {integrity: sha512-wPXdCLLQ0pLcJvvKaZFllhO4cagSsnWeWyzjtZKknySKpSTLwazKxzXW7IpsdEi1+IGIOhNYa51ZDOOGT7KVfw==}
+    engines: {node: '>=18'}
+
   '@turbo/darwin-64@2.8.21':
     resolution: {integrity: sha512-kfGoM0Iw8ZNZpbds+4IzOe0hjvHldqJwUPRAjXJi3KBxg/QOZL95N893SRoMtf2aJ+jJ3dk32yPkp8rvcIjP9g==}
     cpu: [x64]
@@ -1820,6 +1839,18 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
+  '@cachex/core@1.0.1':
+    dependencies:
+      '@dzeio/object-util': 1.9.2
+
+  '@cachex/memory@1.0.1':
+    dependencies:
+      '@cachex/core': 1.0.1
+
+  '@cachex/web-storage@1.0.1':
+    dependencies:
+      '@cachex/core': 1.0.1
+
   '@clerk/shared@4.3.2':
     dependencies:
       '@tanstack/query-core': 5.90.16
@@ -1864,6 +1895,8 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.9
 
   '@drizzle-team/brocli@0.10.2': {}
+
+  '@dzeio/object-util@1.9.2': {}
 
   '@emnapi/core@1.9.1':
     dependencies:
@@ -2435,6 +2468,12 @@ snapshots:
   '@speed-highlight/core@1.2.15': {}
 
   '@tanstack/query-core@5.90.16': {}
+
+  '@tcgdex/sdk@2.7.1':
+    dependencies:
+      '@cachex/memory': 1.0.1
+      '@cachex/web-storage': 1.0.1
+      '@dzeio/object-util': 1.9.2
 
   '@turbo/darwin-64@2.8.21':
     optional: true
