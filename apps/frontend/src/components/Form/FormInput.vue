@@ -65,7 +65,7 @@ const hasIcon = computed(() => !!slots.icon)
 
 .form-input {
   padding: 10px 12px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
+  border: 1.5px solid rgba(0, 0, 0, 0.12);
   border-radius: 8px;
   font-family: var(--body);
   font-size: 13px;
