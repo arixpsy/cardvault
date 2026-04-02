@@ -3,7 +3,7 @@
     :class="['form-textarea', variant === 'gray' ? 'variant-gray' : 'variant-light']"
     v-bind="$attrs"
     :value="modelValue"
-    @input="$emit('update:modelValue', $event.target.value)"
+    @input="$emit('update:modelValue', ($event.target as HTMLTextAreaElement).value)"
   />
 </template>
 

@@ -3,7 +3,7 @@
     :class="['form-select', variant === 'gray' ? 'variant-gray' : 'variant-light']"
     v-bind="$attrs"
     :value="modelValue"
-    @change="$emit('update:modelValue', $event.target.value)"
+    @change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
   >
     <slot />
   </select>
