@@ -1,5 +1,10 @@
 <template>
-  <button :class="variant === 'primary' ? 'btn-primary' : 'btn-secondary'" v-bind="$attrs">
+  <button
+    :class="
+      variant === 'primary' ? 'btn-primary' : variant === 'icon' ? 'btn-icon' : 'btn-secondary'
+    "
+    v-bind="$attrs"
+  >
     <slot />
   </button>
 </template>
@@ -9,7 +14,7 @@ defineProps({
   variant: {
     type: String,
     default: "primary",
-    validator: (v: string) => ["primary", "secondary"].includes(v),
+    validator: (v: string) => ["primary", "secondary", "icon"].includes(v),
   },
 })
 </script>
@@ -60,5 +65,27 @@ defineProps({
 
 .btn-secondary:hover {
   background: var(--surface2);
+}
+
+.btn-icon {
+  background: transparent;
+  color: var(--ink);
+  border: none;
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.btn-icon:hover {
+  background: var(--surface2);
+}
+
+.btn-icon :deep(svg) {
+  width: 18px;
+  height: 18px;
 }
 </style>
