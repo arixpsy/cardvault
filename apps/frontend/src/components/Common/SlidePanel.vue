@@ -54,6 +54,14 @@ const emit = defineEmits<{
   z-index: 500;
   box-shadow: -8px 0 32px rgba(0, 0, 0, 0.08);
   padding: 24px 20px;
+  overflow: hidden;
+}
+
+.panel-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
 }
 
 .panel-header {
