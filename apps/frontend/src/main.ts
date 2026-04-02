@@ -1,6 +1,6 @@
 import { createApp } from "vue"
 import { clerkPlugin } from "@clerk/vue"
-import { VueQueryPlugin } from '@tanstack/vue-query'
+import { VueQueryPlugin } from "@tanstack/vue-query"
 import { router } from "./utils/router"
 import App from "./App.vue"
 import "./style.css"

@@ -24,7 +24,9 @@ defineProps<{
   background: var(--surface);
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .tile-img-wrap {

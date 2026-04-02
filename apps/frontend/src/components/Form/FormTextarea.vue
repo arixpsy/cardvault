@@ -11,16 +11,16 @@
 defineProps({
   modelValue: {
     type: String,
-    default: '',
+    default: "",
   },
   variant: {
     type: String,
-    default: 'light',
-    validator: (v: string) => ['light', 'gray'].includes(v),
+    default: "light",
+    validator: (v: string) => ["light", "gray"].includes(v),
   },
 })
 
-defineEmits(['update:modelValue'])
+defineEmits(["update:modelValue"])
 </script>
 
 <style scoped>
@@ -38,8 +38,12 @@ defineEmits(['update:modelValue'])
   min-height: 80px;
 }
 
-.form-textarea.variant-light { background: var(--bg); }
-.form-textarea.variant-gray { background: var(--surface); }
+.form-textarea.variant-light {
+  background: var(--bg);
+}
+.form-textarea.variant-gray {
+  background: var(--surface);
+}
 .form-textarea:focus {
   border-color: var(--accent);
 }

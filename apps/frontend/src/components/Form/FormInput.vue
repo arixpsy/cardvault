@@ -8,7 +8,7 @@
       v-bind="$attrs"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-    >
+    />
   </div>
   <input
     v-else
@@ -16,25 +16,25 @@
     v-bind="$attrs"
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)"
-  >
+  />
 </template>
 
 <script setup lang="ts">
-import { useSlots, computed } from 'vue'
+import { useSlots, computed } from "vue"
 
 defineProps({
   modelValue: {
     type: [String, Number],
-    default: '',
+    default: "",
   },
   variant: {
     type: String,
-    default: 'light',
-    validator: (v: string) => ['light', 'gray'].includes(v),
+    default: "light",
+    validator: (v: string) => ["light", "gray"].includes(v),
   },
 })
 
-defineEmits(['update:modelValue'])
+defineEmits(["update:modelValue"])
 
 const slots = useSlots()
 const hasIcon = computed(() => !!slots.icon)
@@ -75,8 +75,12 @@ const hasIcon = computed(() => !!slots.icon)
   width: 100%;
 }
 
-.form-input.variant-light { background: var(--bg); }
-.form-input.variant-gray { background: var(--surface); }
+.form-input.variant-light {
+  background: var(--bg);
+}
+.form-input.variant-gray {
+  background: var(--surface);
+}
 
 .form-input.has-icon {
   padding-left: 36px;

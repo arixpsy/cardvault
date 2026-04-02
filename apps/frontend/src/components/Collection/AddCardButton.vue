@@ -3,7 +3,7 @@ import { Plus, Search } from "@lucide/vue"
 import { ref, computed, watch, onUnmounted } from "vue"
 import Button from "../Common/Button.vue"
 import SlidePanel from "../Common/SlidePanel.vue"
-import FormGroup from '../Form/FormGroup.vue'
+import FormGroup from "../Form/FormGroup.vue"
 import FormLabel from "../Form/FormLabel.vue"
 import FormInput from "../Form/FormInput.vue"
 import { useCardSearch } from "../../hooks/useCardSearch"
@@ -16,15 +16,8 @@ const open = ref(false)
 const openPanel = () => (open.value = true)
 const closePanel = () => (open.value = false)
 
-const {
-  searchTerm,
-  data,
-  isFetching,
-  isFetchingNextPage,
-  isError,
-  hasNextPage,
-  fetchNextPage,
-} = useCardSearch()
+const { searchTerm, data, isFetching, isFetchingNextPage, isError, hasNextPage, fetchNextPage } =
+  useCardSearch()
 
 const results = computed(() => data.value?.pages.flat() ?? [])
 

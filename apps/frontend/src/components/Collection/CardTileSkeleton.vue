@@ -16,8 +16,12 @@ withDefaults(defineProps<{ count?: number }>(), { count: 6 })
 
 <style scoped>
 @keyframes shimmer {
-  0%   { background-position: -200% center; }
-  100% { background-position:  200% center; }
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
 
 .skeleton-grid {
