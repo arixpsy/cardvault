@@ -12,7 +12,7 @@ export type Category = (typeof Category)[keyof typeof Category]
 const categoryValues = Object.values(Category) as [Category, ...Category[]]
 
 export const createExpenseSchema = z.object({
-  expenseName: z.string().max(255).optional(),
+  expenseName: z.string().max(255),
   amount: z.coerce.number().positive(),
   category: z.enum(categoryValues).default(Category.OTHERS),
   notes: z.string().max(255),

@@ -91,10 +91,10 @@ export const expensesTable = pgTable(
     userId: varchar({ length: 255 })
       .references(() => usersTable.clerkId)
       .notNull(),
-    expenseName: varchar({ length: 255 }),
+    expenseName: varchar({ length: 255 }).notNull(),
     amount: doublePrecision().notNull(),
     category: categoryEnum("category").default(Category.OTHERS),
-    notes: varchar({ length: 255 }).notNull(),
+    notes: varchar({ length: 255 }),
     expenseAt: date({ mode: "string" }).defaultNow().notNull(),
     ...timestamps,
   },
