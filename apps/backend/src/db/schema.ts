@@ -11,7 +11,7 @@ import {
   text,
   unique,
 } from "drizzle-orm/pg-core"
-import { Category, Condition, Game } from "../utils/enum"
+import { Category, Condition, Game } from "@repo/shared"
 
 const timestamps = {
   createdAt: timestamp().defaultNow().notNull(),

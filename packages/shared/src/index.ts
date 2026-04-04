@@ -20,3 +20,20 @@ export const createExpenseSchema = z.object({
 })
 
 export type CreateExpenseInput = z.infer<typeof createExpenseSchema>
+
+export const Condition = {
+  NM: "NM", // Near Mint — no visible wear, print defects only
+  LP: "LP", // Lightly Played — minor wear on edges/corners
+  MP: "MP", // Moderately Played — noticeable wear, no creases
+  HP: "HP", // Heavily Played — significant wear, possible creases
+  DMG: "DMG", // Damaged — tears, heavy creases, water damage
+} as const
+
+export type Condition = (typeof Condition)[keyof typeof Condition]
+
+export const Game = {
+  POKEMON: "POKEMON",
+  OTHERS: "",
+} as const
+
+export type Game = (typeof Game)[keyof typeof Game]
