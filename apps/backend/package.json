@@ -19,9 +19,12 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@clerk/backend": "^3.2.4",
+    "@hono/clerk-auth": "^3.1.0",
     "@hono/swagger-ui": "^0.6.1",
     "@hono/zod-openapi": "^1.2.4",
     "@neondatabase/serverless": "^1.0.2",
+    "@repo/shared": "workspace:*",
     "consola": "^3.4.2",
     "dotenv": "^17.3.1",
     "drizzle-orm": "^0.45.2",
