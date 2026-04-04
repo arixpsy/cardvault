@@ -1,5 +1,6 @@
 import {
   doublePrecision,
+  index,
   integer,
   jsonb,
   pgEnum,
@@ -50,35 +51,56 @@ export const cardsTable = pgTable(
     createdAt: timestamp().defaultNow().notNull(),
     updatedAt: timestamp(),
   },
-  (t) => [unique().on(t.game, t.externalId)],
+  (t) => [
+    unique().on(t.game, t.externalId),
+    index("cards_set_id_idx").on(t.setId),
+    index("cards_name_idx").on(t.name),
+    index("cards_price_updated_at_idx").on(t.priceUpdatedAt),
+  ],
 )
 
-export const collectionEntriesTable = pgTable("collection_entries", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  userId: varchar({ length: 255 })
-    .references(() => usersTable.clerkId)
-    .notNull(),
-  cardId: integer()
-    .references(() => cardsTable.id)
-    .notNull(),
-  condition: conditionEnum("condition").notNull(),
-  // Free-form: "Reverse Holo", "Foil", "Etched Foil", "Enchanted", etc.
-  variant: varchar({ length: 100 }),
-  customValue: doublePrecision(),
-  acquiredAt: date({ mode: "string" }).defaultNow().notNull(),
-  notes: varchar({ length: 255 }),
-  ...timestamps,
-})
+export const collectionEntriesTable = pgTable(
+  "collection_entries",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    userId: varchar({ length: 255 })
+      .references(() => usersTable.clerkId)
+      .notNull(),
+    cardId: integer()
+      .references(() => cardsTable.id)
+      .notNull(),
+    condition: conditionEnum("condition").notNull(),
+    // Free-form: "Reverse Holo", "Foil", "Etched Foil", "Enchanted", etc.
+    variant: varchar({ length: 100 }),
+    customValue: doublePrecision(),
+    acquiredAt: date({ mode: "string" }).defaultNow().notNull(),
+    notes: varchar({ length: 255 }),
+    ...timestamps,
+  },
+  (t) => [
+    index("collection_entries_user_id_idx").on(t.userId),
+    index("collection_entries_card_id_idx").on(t.cardId),
+    index("collection_entries_user_card_idx").on(t.userId, t.cardId),
+  ],
+)
 
-export const expensesTable = pgTable("expenses", {
-  id: integer().primaryKey().generatedAlwaysAsIdentity(),
-  userId: varchar({ length: 255 })
-    .references(() => usersTable.clerkId)
-    .notNull(),
-  expenseName: varchar({ length: 255 }),
-  amount: doublePrecision().notNull(),
-  category: categoryEnum("category").default(Category.OTHERS),
-  notes: varchar({ length: 255 }).notNull(),
-  expenseAt: date({ mode: "string" }).defaultNow().notNull(),
-  ...timestamps,
-})
+export const expensesTable = pgTable(
+  "expenses",
+  {
+    id: integer().primaryKey().generatedAlwaysAsIdentity(),
+    userId: varchar({ length: 255 })
+      .references(() => usersTable.clerkId)
+      .notNull(),
+    expenseName: varchar({ length: 255 }),
+    amount: doublePrecision().notNull(),
+    category: categoryEnum("category").default(Category.OTHERS),
+    notes: varchar({ length: 255 }).notNull(),
+    expenseAt: date({ mode: "string" }).defaultNow().notNull(),
+    ...timestamps,
+  },
+  (t) => [
+    index("expenses_user_id_idx").on(t.userId),
+    index("expenses_expense_at_idx").on(t.expenseAt),
+    index("expenses_category_idx").on(t.category),
+  ],
+)
