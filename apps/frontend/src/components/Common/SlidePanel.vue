@@ -47,7 +47,7 @@ const emit = defineEmits<{
   top: 0;
   right: 0;
   width: 420px;
-  height: 100vh;
+  height: 100dvh;
   background: var(--surface);
   display: flex;
   flex-direction: column;
@@ -108,6 +108,10 @@ const emit = defineEmits<{
     width: 100%;
     border-left: none;
     box-shadow: none;
+  }
+
+  .panel-title {
+    font-size: 24px;
   }
 }
 </style>

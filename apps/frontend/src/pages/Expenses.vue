@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { Plus } from "@lucide/vue"
-import Button from "../components/Common/Button.vue"
 import PageContent from "../components/Common/PageContent.vue"
 import PageHeader from "../components/Common/PageHeader.vue"
+import AddExpenseButton from "../components/Expenses/AddExpenseButton.vue"
 </script>
 
 <template>
   <PageContent>
     <PageHeader title="Expenses" description="Track your spending">
-      <Button><Plus />Add Expense</Button>
+      <AddExpenseButton />
     </PageHeader>
   </PageContent>
 </template>

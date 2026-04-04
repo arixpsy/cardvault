@@ -14,7 +14,7 @@ import ProfileImage from "./ProfileImage.vue"
 <style lang="css" scoped>
 .content-wrapper {
   margin-left: 72px;
-  height: 100vh;
+  height: 100dvh;
   overflow-y: auto;
 }
 

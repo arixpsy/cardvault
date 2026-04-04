@@ -35,6 +35,8 @@ defineProps({
   gap: 8px;
   transition: all 0.2s;
   letter-spacing: 0.02em;
+  text-align: center;
+  justify-content: center;
 }
 
 .btn-primary:hover {
@@ -61,6 +63,7 @@ defineProps({
   align-items: center;
   gap: 6px;
   transition: all 0.2s;
+  justify-content: center;
 }
 
 .btn-secondary:hover {
