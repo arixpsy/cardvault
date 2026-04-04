@@ -1,6 +1,6 @@
-import app from "./index.js"
+import type { AppType } from "./index.js"
 import { hc } from "hono/client"
 
-export type Client = ReturnType<typeof hc<typeof app>>
+export type Client = ReturnType<typeof hc<AppType>>
 
-export const hcWithType = (...args: Parameters<typeof hc>): Client => hc<typeof app>(...args)
+export const hcWithType = (...args: Parameters<typeof hc>): Client => hc<AppType>(...args)
