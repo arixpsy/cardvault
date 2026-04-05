@@ -14,7 +14,7 @@ const categoryValues = Object.values(Category) as [Category, ...Category[]]
 export const createExpenseSchema = z.object({
   expenseName: z.string().max(255),
   amount: z.coerce.number().positive(),
-  category: z.enum(categoryValues).default(Category.OTHERS),
+  category: z.enum(categoryValues),
   notes: z.string().max(255),
   expenseAt: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Must be YYYY-MM-DD"),
 })
