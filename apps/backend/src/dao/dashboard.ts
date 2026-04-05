@@ -12,7 +12,7 @@ export async function getDashboardStats(env: CloudflareBindings, userId: string)
 
   const [collectionValueResult] = await db
     .select({
-      value: sql<number>`COALESCE(SUM(COALESCE(${collectionEntriesTable.customValue}, ${cardsTable.marketPrice}, 0)), 0)`,
+      value: sql<number>`COALESCE(SUM(COALESCE(${cardsTable.marketPrice}, 0)), 0)`,
     })
     .from(collectionEntriesTable)
     .leftJoin(cardsTable, eq(collectionEntriesTable.cardId, cardsTable.id))
