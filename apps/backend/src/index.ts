@@ -16,6 +16,10 @@ import {
   patchExpenseHandler,
   postExpensesHandler,
 } from "./handlers/expenses"
+import { getDashboardStatsRoute } from "./routes/dashboard"
+import { getDashboardStatsHandler } from "./handlers/dashboard"
+import { postUsersMeRoute } from "./routes/users"
+import { postUsersMeHandler } from "./handlers/users"
 
 const app = new OpenAPIHono<{ Bindings: CloudflareBindings }>({
   defaultHook: (result, c) => {
@@ -44,6 +48,8 @@ app.onError((err, c) => {
 
 // Routes
 const routes = app
+  .openapi(postUsersMeRoute, postUsersMeHandler)
+  .openapi(getDashboardStatsRoute, getDashboardStatsHandler)
   .openapi(postExpensesRoute, postExpensesHandler)
   .openapi(getExpensesRoute, getExpensesHandler)
   .openapi(getExpenseRoute, getExpenseHandler)
