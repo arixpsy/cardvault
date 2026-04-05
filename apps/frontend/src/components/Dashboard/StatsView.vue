@@ -1,20 +1,53 @@
+<script setup lang="ts">
+const props = defineProps<{
+  totalCards: number
+  collectionValue: number
+  totalSpend: number
+  netProfitLoss: number
+  isLoading?: boolean
+}>()
+
+function formatCurrency(value: number) {
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(value)
+}
+
+function formatCurrencyLocal(value: number) {
+  return new Intl.NumberFormat("en-US", { style: "currency", currency: "SGD" }).format(value)
+}
+</script>
+
 <template>
   <div class="stats">
     <div class="stat-cell">
       <div class="stat-label">Total Cards</div>
-      <div class="stat-value">123</div>
+      <div class="stat-value" :class="{ loading: isLoading }">
+        {{ isLoading ? "—" : totalCards }}
+      </div>
     </div>
     <div class="stat-cell">
       <div class="stat-label">Collection Value</div>
-      <div class="stat-value gold">$2220.00</div>
+      <div class="stat-value gold" :class="{ loading: isLoading }">
+        {{ isLoading ? "—" : formatCurrency(collectionValue) }}
+      </div>
     </div>
     <div class="stat-cell">
       <div class="stat-label">Total Spent</div>
-      <div class="stat-value">$20.00</div>
+      <div class="stat-value" :class="{ loading: isLoading }">
+        {{ isLoading ? "—" : formatCurrencyLocal(totalSpend) }}
+      </div>
     </div>
     <div class="stat-cell">
       <div class="stat-label">Net Profit/Loss</div>
-      <div class="stat-value negative">—$20.00</div>
+      <div
+        class="stat-value"
+        :class="{
+          positive: !isLoading && netProfitLoss > 0,
+          negative: !isLoading && netProfitLoss < 0,
+          loading: isLoading,
+        }"
+      >
+        {{ isLoading ? "—" : formatCurrency(netProfitLoss) }}
+      </div>
     </div>
   </div>
 </template>
@@ -65,6 +98,10 @@
   font-size: 20px;
   font-weight: 700;
   color: #fff;
+}
+
+.stat-value.loading {
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .stat-value.positive {

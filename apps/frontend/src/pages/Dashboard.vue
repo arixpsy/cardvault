@@ -1,9 +1,30 @@
 <script setup lang="ts">
+import { useUser } from "@clerk/vue"
+import { watch } from "vue"
 import CardCarousel from "../components/Dashboard/CardCarousel.vue"
 import StatsView from "../components/Dashboard/StatsView.vue"
 import DashboardSparkles from "../components/Dashboard/DashboardSparkles.vue"
+// import RecentActivity from "../components/Dashboard/RecentActivity.vue"
+// import TopByValue from "../components/Dashboard/TopByValue.vue"
 import PageContent from "../components/Common/PageContent.vue"
 import PageHeader from "../components/Common/PageHeader.vue"
+import { useDashboardStats } from "../hooks/useDashboardStats"
+import { upsertCurrentUser } from "../services/users"
+
+const { user, isLoaded } = useUser()
+const { data: stats, isLoading: statsLoading } = useDashboardStats()
+
+watch(
+  [isLoaded, user],
+  ([loaded, u]) => {
+    if (!loaded || !u) return
+    upsertCurrentUser({
+      name: u.fullName ?? u.firstName ?? "",
+      email: u.primaryEmailAddress?.emailAddress ?? "",
+    })
+  },
+  { immediate: true },
+)
 </script>
 
 <template>
@@ -17,11 +38,23 @@ import PageHeader from "../components/Common/PageHeader.vue"
 
     <CardCarousel />
 
-    <StatsView />
+    <StatsView
+      :total-cards="stats?.totalCards ?? 0"
+      :collection-value="stats?.collectionValue ?? 0"
+      :total-spend="stats?.totalSpend ?? 0"
+      :net-profit-loss="stats?.netProfitLoss ?? 0"
+      :is-loading="statsLoading"
+    />
   </div>
 
   <PageContent>
     <PageHeader title="Overview" description="Recent Activity & Stats" />
+
+    <div class="overview-grid">
+      <RecentActivity />
+
+      <TopByValue />
+    </div>
   </PageContent>
 </template>
 
@@ -73,6 +106,12 @@ import PageHeader from "../components/Common/PageHeader.vue"
   color: var(--accent);
 }
 
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
 @media (max-width: 640px) {
   .hero {
     height: calc(100dvh - 60px);
@@ -80,6 +119,10 @@ import PageHeader from "../components/Common/PageHeader.vue"
 
   .hero-bg-text {
     bottom: 0px;
+  }
+
+  .overview-grid {
+    grid-template-columns: 1fr;
   }
 }
 </style>
