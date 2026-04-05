@@ -3,18 +3,26 @@
     :class="
       variant === 'primary' ? 'btn-primary' : variant === 'icon' ? 'btn-icon' : 'btn-secondary'
     "
+    :disabled="loading"
     v-bind="$attrs"
   >
-    <slot />
+    <Loader2 v-if="loading" class="spinner" />
+    <slot v-else />
   </button>
 </template>
 
 <script lang="ts" setup>
+import { Loader2 } from "@lucide/vue"
+
 defineProps({
   variant: {
     type: String,
     default: "primary",
     validator: (v: string) => ["primary", "secondary", "icon"].includes(v),
+  },
+  loading: {
+    type: Boolean,
+    default: false,
   },
 })
 </script>
@@ -90,5 +98,15 @@ defineProps({
 .btn-icon :deep(svg) {
   width: 18px;
   height: 18px;
+}
+
+.spinner {
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 </style>
