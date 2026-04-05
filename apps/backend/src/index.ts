@@ -1,52 +1,21 @@
 import { OpenAPIHono } from "@hono/zod-openapi"
-import { createRoute } from "@hono/zod-openapi"
-import { z } from "@hono/zod-openapi"
 import { swaggerUI } from "@hono/swagger-ui"
-
-const ParamsSchema = z.object({
-  id: z
-    .string()
-    .min(3)
-    .openapi({
-      param: {
-        name: "id",
-        in: "path",
-      },
-      example: "1212121",
-    }),
-})
-
-const UserSchema = z
-  .object({
-    id: z.string().openapi({
-      example: "123",
-    }),
-    name: z.string().openapi({
-      example: "John Doe",
-    }),
-    age: z.number().openapi({
-      example: 42,
-    }),
-  })
-  .openapi("User")
-
-const route = createRoute({
-  method: "get",
-  path: "/users/{id}",
-  request: {
-    params: ParamsSchema,
-  },
-  responses: {
-    200: {
-      content: {
-        "application/json": {
-          schema: UserSchema,
-        },
-      },
-      description: "Retrieve the user",
-    },
-  },
-})
+import { clerkMiddleware } from "@hono/clerk-auth"
+import { HTTPException } from "hono/http-exception"
+import {
+  deleteExpenseRoute,
+  getExpenseRoute,
+  getExpensesRoute,
+  patchExpenseRoute,
+  postExpensesRoute,
+} from "./routes/expenses"
+import {
+  deleteExpenseHandler,
+  getExpenseHandler,
+  getExpensesHandler,
+  patchExpenseHandler,
+  postExpensesHandler,
+} from "./handlers/expenses"
 
 const app = new OpenAPIHono<{ Bindings: CloudflareBindings }>({
   defaultHook: (result, c) => {
@@ -62,18 +31,26 @@ const app = new OpenAPIHono<{ Bindings: CloudflareBindings }>({
   },
 })
 
-app.openapi(route, (c) => {
-  const { id } = c.req.valid("param")
-  return c.json(
-    {
-      id,
-      age: 20,
-      name: "Ultra-man",
-    },
-    200, // You should specify the status code even if it is 200.
-  )
+// Middlewares
+app.use("*", clerkMiddleware())
+
+app.onError((err, c) => {
+  if (err instanceof HTTPException) {
+    return c.json({ ok: false, message: err.message }, err.status)
+  }
+  console.error(err)
+  return c.json({ ok: false, message: "Internal server error" }, 500)
 })
 
+// Routes
+const routes = app
+  .openapi(postExpensesRoute, postExpensesHandler)
+  .openapi(getExpensesRoute, getExpensesHandler)
+  .openapi(getExpenseRoute, getExpenseHandler)
+  .openapi(patchExpenseRoute, patchExpenseHandler)
+  .openapi(deleteExpenseRoute, deleteExpenseHandler)
+
+// OpenAPI docs
 app.doc("/doc", {
   openapi: "3.1.0",
   info: {
@@ -82,8 +59,17 @@ app.doc("/doc", {
   },
 })
 
+// Swagger UI
 app.get("/ui", swaggerUI({ url: "/doc" }))
 
-export type AppType = typeof app
+export type AppType = typeof routes
 
-export default app
+export default {
+  fetch: app.fetch,
+  async scheduled(_event: ScheduledEvent, env: CloudflareBindings, _ctx: ExecutionContext) {
+    // Refresh market prices for cards that are in at least one user's collection
+    // and whose price is older than 24 hours.
+    // TODO: implement price refresh logic using TCGDex single-card endpoint
+    console.log("Scheduled price refresh triggered", env)
+  },
+}
