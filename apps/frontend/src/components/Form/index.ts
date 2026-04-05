@@ -1,0 +1,5 @@
+export { default as Group } from "./FormGroup.vue"
+export { default as Label } from "./FormLabel.vue"
+export { default as Input } from "./FormInput.vue"
+export { default as Select } from "./FormSelect.vue"
+export { default as Textarea } from "./FormTextarea.vue"
