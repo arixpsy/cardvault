@@ -1,6 +1,7 @@
 import { OpenAPIHono } from "@hono/zod-openapi"
 import { swaggerUI } from "@hono/swagger-ui"
 import { clerkMiddleware } from "@hono/clerk-auth"
+import { cors } from "hono/cors"
 import { HTTPException } from "hono/http-exception"
 import {
   deleteExpenseRoute,
@@ -36,6 +37,7 @@ const app = new OpenAPIHono<{ Bindings: CloudflareBindings }>({
 })
 
 // Middlewares
+app.use("*", (c, next) => cors({ origin: c.env.FRONTEND_DOMAIN })(c, next))
 app.use("*", clerkMiddleware())
 
 app.onError((err, c) => {
