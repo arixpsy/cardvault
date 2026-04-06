@@ -27,7 +27,7 @@ const filters = computed(() => ({
 const { data, hasNextPage, isFetching, isFetchingNextPage, fetchNextPage } = useExpenses(filters)
 
 const isFiltering = computed(() => isFetching.value && !isFetchingNextPage.value)
-const { mutate: deleteExpense } = useDeleteExpense()
+const { mutate: deleteExpense, isPending: isDeleting } = useDeleteExpense()
 const { data: stats } = useExpenseStats()
 
 const expenses = computed(() => data.value?.pages.flat() ?? [])
@@ -46,6 +46,7 @@ const expenses = computed(() => data.value?.pages.flat() ?? [])
       :has-next-page="!!hasNextPage"
       :is-fetching-next-page="isFetchingNextPage"
       :is-filtering="isFiltering"
+      :is-deleting="isDeleting"
       v-model:search="search"
       v-model:category="category"
       @delete="deleteExpense"

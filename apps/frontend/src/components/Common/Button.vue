@@ -1,8 +1,11 @@
 <template>
   <button
-    :class="
-      variant === 'primary' ? 'btn-primary' : variant === 'icon' ? 'btn-icon' : 'btn-secondary'
-    "
+    :class="{
+      'btn-primary': variant === 'primary',
+      'btn-secondary': variant === 'secondary',
+      'btn-danger': variant === 'danger',
+      'btn-icon': variant === 'icon',
+    }"
     :disabled="loading"
     v-bind="$attrs"
   >
@@ -18,7 +21,7 @@ defineProps({
   variant: {
     type: String,
     default: "primary",
-    validator: (v: string) => ["primary", "secondary", "icon"].includes(v),
+    validator: (v: string) => ["primary", "secondary", "danger", "icon"].includes(v),
   },
   loading: {
     type: Boolean,
@@ -98,6 +101,35 @@ defineProps({
 .btn-icon :deep(svg) {
   width: 18px;
   height: 18px;
+}
+
+.btn-danger {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-family: var(--body);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+  letter-spacing: 0.02em;
+  text-align: center;
+  justify-content: center;
+}
+
+.btn-danger:hover {
+  background: #a8192e;
+  transform: translateY(-1px);
+}
+
+.btn-danger :deep(svg) {
+  width: 16px;
+  height: 16px;
 }
 
 .spinner {

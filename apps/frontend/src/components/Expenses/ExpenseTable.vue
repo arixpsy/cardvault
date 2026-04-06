@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { computed, ref, onMounted, onUnmounted } from "vue"
+import { computed, ref, watch, onMounted, onUnmounted } from "vue"
 import { Trash2, Loader2 } from "@lucide/vue"
 import * as Form from "../Form"
+import ConfirmModal from "../Common/ConfirmModal.vue"
 
 interface Expense {
   id: number
@@ -17,6 +18,7 @@ const props = defineProps<{
   hasNextPage: boolean
   isFetchingNextPage: boolean
   isFiltering: boolean
+  isDeleting: boolean
 }>()
 
 const emit = defineEmits<{
@@ -28,6 +30,31 @@ const search = defineModel<string>("search", { default: "" })
 const category = defineModel<string>("category", { default: "" })
 const sortBy = ref("date-desc")
 const sentinel = ref<HTMLElement | null>(null)
+const pendingDeleteId = ref<number | null>(null)
+
+function requestDelete(id: number) {
+  pendingDeleteId.value = id
+}
+
+function confirmDelete() {
+  if (pendingDeleteId.value !== null) {
+    emit("delete", pendingDeleteId.value)
+  }
+}
+
+function cancelDelete() {
+  pendingDeleteId.value = null
+}
+
+// Close modal once the delete mutation settles
+watch(
+  () => props.isDeleting,
+  (val, prev) => {
+    if (prev === true && val === false) {
+      pendingDeleteId.value = null
+    }
+  },
+)
 
 const CATEGORY_LABELS: Record<string, string> = {
   SEALED_PRODUCTS: "Sealed",
@@ -154,7 +181,7 @@ onUnmounted(() => {
             <td class="date-cell">{{ formatDate(expense.expenseAt) }}</td>
             <td class="amount-cell">{{ formatAmount(expense.amount) }}</td>
             <td class="action-cell">
-              <button class="del-btn" @click="emit('delete', expense.id)" title="Delete">
+              <button class="del-btn" @click="requestDelete(expense.id)" title="Delete">
                 <Trash2 />
               </button>
             </td>
@@ -198,7 +225,7 @@ onUnmounted(() => {
             <span class="card-date">{{ formatDate(expense.expenseAt) }}</span>
             <div class="card-actions">
               <span class="card-amount">{{ formatAmount(expense.amount) }}</span>
-              <button class="del-btn" @click="emit('delete', expense.id)" title="Delete">
+              <button class="del-btn" @click="requestDelete(expense.id)" title="Delete">
                 <Trash2 />
               </button>
             </div>
@@ -213,6 +240,18 @@ onUnmounted(() => {
 
     <div ref="sentinel" class="sentinel" />
   </div>
+
+  <ConfirmModal
+    :open="pendingDeleteId !== null"
+    title="Delete Expense"
+    message="This transaction will be permanently removed. This action cannot be undone."
+    confirm-label="Delete"
+    cancel-label="Cancel"
+    variant="danger"
+    :loading="isDeleting"
+    @confirm="confirmDelete"
+    @cancel="cancelDelete"
+  />
 </template>
 
 <style lang="css" scoped>
