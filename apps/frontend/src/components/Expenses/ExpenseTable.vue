@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, ref, watch, onMounted, onUnmounted } from "vue"
-import { Trash2, Loader2 } from "@lucide/vue"
+import { Trash2, Loader2, Search } from "@lucide/vue"
 import * as Form from "../Form"
 import ConfirmModal from "../Common/ConfirmModal.vue"
 
@@ -123,10 +123,7 @@ onUnmounted(() => {
     <div class="expense-filters">
       <Form.Input v-model="search" placeholder="Search expenses...">
         <template #icon>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-          </svg>
+          <Search />
         </template>
       </Form.Input>
 
