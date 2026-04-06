@@ -4,7 +4,9 @@ export const queryKeys = {
   },
   expenses: {
     all: () => ["expenses"] as const,
-    list: () => ["expenses", "list"] as const,
+    list: (filters?: { search?: string; category?: string }) =>
+      ["expenses", "list", filters] as const,
+    stats: () => ["expenses", "stats"] as const,
   },
   cardSearch: {
     results: (term: string) => ["card-search", term] as const,

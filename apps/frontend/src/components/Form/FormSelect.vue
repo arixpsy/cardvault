@@ -1,5 +1,5 @@
 <template>
-  <div class="select-wrap">
+  <div :class="['select-wrap', { 'select-block': block }]">
     <select
       :class="['form-select', variant === 'gray' ? 'variant-gray' : 'variant-light']"
       v-bind="$attrs"
@@ -27,6 +27,10 @@ defineProps({
     default: "light",
     validator: (v: string) => ["light", "gray"].includes(v),
   },
+  block: {
+    type: Boolean,
+    default: true,
+  },
 })
 
 defineEmits(["update:modelValue"])
@@ -35,6 +39,13 @@ defineEmits(["update:modelValue"])
 <style scoped>
 .select-wrap {
   position: relative;
+}
+
+.select-block {
+  width: 100%;
+}
+
+.select-block .form-select {
   width: 100%;
 }
 
@@ -47,7 +58,6 @@ defineEmits(["update:modelValue"])
   color: var(--ink);
   outline: none;
   transition: border-color 0.2s;
-  width: 100%;
   appearance: none;
   -webkit-appearance: none;
 }

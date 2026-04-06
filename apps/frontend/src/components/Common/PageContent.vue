@@ -8,6 +8,7 @@
 .page-content {
   padding: 40px;
   height: 100dvh;
+  overflow: auto;
 }
 
 @media (max-width: 640px) {
