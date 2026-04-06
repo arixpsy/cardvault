@@ -3,6 +3,7 @@ import {
   deleteExpense,
   getExpense,
   getExpenses,
+  getExpenseStats,
   insertExpense,
   updateExpense,
 } from "../dao/expenses"
@@ -10,6 +11,7 @@ import { requireAuth } from "../lib/auth"
 import {
   deleteExpenseRoute,
   getExpenseRoute,
+  getExpenseStatsRoute,
   getExpensesRoute,
   patchExpenseRoute,
   postExpensesRoute,
@@ -26,9 +28,15 @@ export const postExpensesHandler: RouteHandler<typeof postExpensesRoute, Env> = 
 
 export const getExpensesHandler: RouteHandler<typeof getExpensesRoute, Env> = async (c) => {
   const userId = requireAuth(c)
-  const { limit, offset } = c.req.valid("query")
-  const rows = await getExpenses(c.env, userId, { limit, offset })
+  const { limit, offset, search, category } = c.req.valid("query")
+  const rows = await getExpenses(c.env, userId, { limit, offset, search, category })
   return c.json(rows, 200)
+}
+
+export const getExpenseStatsHandler: RouteHandler<typeof getExpenseStatsRoute, Env> = async (c) => {
+  const userId = requireAuth(c)
+  const stats = await getExpenseStats(c.env, userId)
+  return c.json(stats, 200)
 }
 
 export const getExpenseHandler: RouteHandler<typeof getExpenseRoute, Env> = async (c) => {

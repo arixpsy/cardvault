@@ -7,6 +7,15 @@ export const UpdateExpenseBodySchema = createExpenseSchema.partial().openapi("Up
 
 const categoryValues = Object.values(Category) as [Category, ...Category[]]
 
+export const ExpenseStatsResponseSchema = z
+  .object({
+    totalSpent: z.number().openapi({ example: 142.5 }),
+    totalCount: z.number().int().openapi({ example: 12 }),
+    cardPurchasesTotal: z.number().openapi({ example: 100.0 }),
+    otherCostsTotal: z.number().openapi({ example: 42.5 }),
+  })
+  .openapi("ExpenseStats")
+
 export const ExpenseResponseSchema = z
   .object({
     id: z.number().openapi({ example: 1 }),

@@ -2,9 +2,11 @@ import { createRoute, z } from "@hono/zod-openapi"
 import {
   CreateExpenseBodySchema,
   ExpenseResponseSchema,
+  ExpenseStatsResponseSchema,
   UpdateExpenseBodySchema,
 } from "../schemas/expenses"
 import { errorResponses } from "../lib/routes"
+import { Category } from "@repo/shared"
 
 const expenseIdParam = z.object({ id: z.coerce.number().int().positive() })
 
@@ -33,12 +35,26 @@ export const getExpensesRoute = createRoute({
     query: z.object({
       limit: z.coerce.number().int().min(1).max(100).default(20).optional(),
       offset: z.coerce.number().int().min(0).default(0).optional(),
+      search: z.string().optional(),
+      category: z.enum(Object.values(Category) as [string, ...string[]]).optional(),
     }),
   },
   responses: {
     200: {
       content: { "application/json": { schema: z.array(ExpenseResponseSchema) } },
       description: "List of expenses",
+    },
+    ...errorResponses,
+  },
+})
+
+export const getExpenseStatsRoute = createRoute({
+  method: "get",
+  path: "/expenses/stats",
+  responses: {
+    200: {
+      content: { "application/json": { schema: ExpenseStatsResponseSchema } },
+      description: "Expense stats",
     },
     ...errorResponses,
   },

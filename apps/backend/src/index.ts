@@ -6,6 +6,7 @@ import { HTTPException } from "hono/http-exception"
 import {
   deleteExpenseRoute,
   getExpenseRoute,
+  getExpenseStatsRoute,
   getExpensesRoute,
   patchExpenseRoute,
   postExpensesRoute,
@@ -13,6 +14,7 @@ import {
 import {
   deleteExpenseHandler,
   getExpenseHandler,
+  getExpenseStatsHandler,
   getExpensesHandler,
   patchExpenseHandler,
   postExpensesHandler,
@@ -54,6 +56,7 @@ const routes = app
   .openapi(getDashboardStatsRoute, getDashboardStatsHandler)
   .openapi(postExpensesRoute, postExpensesHandler)
   .openapi(getExpensesRoute, getExpensesHandler)
+  .openapi(getExpenseStatsRoute, getExpenseStatsHandler)
   .openapi(getExpenseRoute, getExpenseHandler)
   .openapi(patchExpenseRoute, patchExpenseHandler)
   .openapi(deleteExpenseRoute, deleteExpenseHandler)
