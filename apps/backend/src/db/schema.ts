@@ -2,7 +2,6 @@ import {
   doublePrecision,
   index,
   integer,
-  jsonb,
   pgEnum,
   pgTable,
   timestamp,
@@ -44,8 +43,6 @@ export const cardsTable = pgTable(
     setName: varchar({ length: 255 }).notNull(),
     rarity: varchar({ length: 100 }),
     imageUrl: text(),
-    // Game-specific fields (e.g. HP, mana cost, ink cost)
-    metadata: jsonb(),
     marketPrice: doublePrecision(),
     priceUpdatedAt: timestamp(),
     createdAt: timestamp().defaultNow().notNull(),
