@@ -33,7 +33,27 @@ export type Condition = (typeof Condition)[keyof typeof Condition]
 
 export const Game = {
   POKEMON: "POKEMON",
-  OTHERS: "",
+  OTHERS: "OTHERS",
 } as const
 
 export type Game = (typeof Game)[keyof typeof Game]
+
+const conditionValues = Object.values(Condition) as [Condition, ...Condition[]]
+const gameValues = Object.values(Game) as [Game, ...Game[]]
+
+export const createCollectionEntrySchema = z.object({
+  game: z.enum(gameValues),
+  externalId: z.string().max(100),
+  localId: z.string().max(20),
+  name: z.string().max(255),
+  setId: z.string().max(50),
+  setName: z.string().max(255),
+  rarity: z.string().max(100).optional(),
+  imageUrl: z.string().optional(),
+  condition: z.enum(conditionValues),
+  variant: z.string().max(100).optional(),
+  customValue: z.coerce.number().positive().optional(),
+  notes: z.string().max(255).optional(),
+})
+
+export type CreateCollectionEntryInput = z.infer<typeof createCollectionEntrySchema>
