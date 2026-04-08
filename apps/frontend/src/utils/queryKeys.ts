@@ -11,4 +11,10 @@ export const queryKeys = {
   cardSearch: {
     results: (term: string) => ["card-search", term] as const,
   },
+  cards: {
+    detail: (id: string) => ["cards", "detail", id] as const,
+  },
+  collection: {
+    all: () => ["collection"] as const,
+  },
 }

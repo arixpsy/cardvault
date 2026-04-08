@@ -1,4 +1,4 @@
-import { ref, watch, onUnmounted } from "vue"
+import { ref, computed, watch, onUnmounted } from "vue"
 import { useInfiniteQuery } from "@tanstack/vue-query"
 import { searchCards, PAGE_SIZE } from "../services/cards"
 import { queryKeys } from "../utils/queryKeys"
@@ -25,7 +25,7 @@ export function useCardSearch() {
   })
 
   const query = useInfiniteQuery({
-    queryKey: queryKeys.cardSearch.results(debouncedTerm.value),
+    queryKey: computed(() => queryKeys.cardSearch.results(debouncedTerm.value)),
     queryFn: ({ pageParam }) => searchCards(debouncedTerm.value, pageParam as number),
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) =>

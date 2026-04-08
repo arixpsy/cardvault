@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { CardResume } from "@tcgdex/sdk"
+import CardImage from "../Common/CardImage.vue"
 
 defineProps<{
   card: CardResume
@@ -9,8 +10,7 @@ defineProps<{
 <template>
   <div class="tile-card">
     <div class="tile-img-wrap">
-      <img v-if="card.image" :src="`${card.image}/low.webp`" :alt="card.name" class="tile-img" />
-      <div v-else class="tile-img-empty" />
+      <CardImage :src="card.image ? `${card.image}/low.webp` : undefined" :alt="card.name" />
     </div>
     <div class="tile-info">
       <span class="tile-name">{{ card.name }}</span>
@@ -31,23 +31,6 @@ defineProps<{
 
 .tile-img-wrap {
   padding: 10px 10px 6px;
-  display: flex;
-  justify-content: center;
-}
-
-.tile-img {
-  width: 100%;
-  aspect-ratio: 245 / 337;
-  object-fit: contain;
-  border-radius: 6px;
-  display: block;
-}
-
-.tile-img-empty {
-  width: 100%;
-  aspect-ratio: 245 / 337;
-  border-radius: 6px;
-  background: var(--surface2);
 }
 
 .tile-info {

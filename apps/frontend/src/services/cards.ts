@@ -8,3 +8,8 @@ export async function searchCards(name: string, page: number) {
   const results = await tcgdex.card.list(query)
   return results ?? []
 }
+
+export async function getCardDetail(id: string) {
+  const card = await tcgdex.card.get(id)
+  return card ?? null
+}

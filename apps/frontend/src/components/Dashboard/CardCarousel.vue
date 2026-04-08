@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import CardImage from "../Common/CardImage.vue"
+
 const items = [
   {
     src: "https://assets.tcgdex.net/en/me/me02.5/276/low.webp",
@@ -37,7 +39,7 @@ const items = [
   <div class="scene">
     <div class="carousel">
       <div v-for="(item, index) in items" class="item" :style="{ '--position': index + 1 }">
-        <img :src="item.src" alt="" loading="lazy" />
+        <CardImage :src="item.src" />
       </div>
     </div>
   </div>
@@ -70,9 +72,13 @@ const items = [
   transform: rotateY(calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)) translateZ(220px);
 }
 
-.scene .carousel .item img {
+.scene .carousel .item :deep(.card-img-root) {
   width: 100%;
   height: 100%;
+  border-radius: 8px;
+}
+
+.scene .carousel .item :deep(.card-img) {
   object-fit: cover;
 }
 
