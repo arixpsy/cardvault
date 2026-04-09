@@ -23,8 +23,8 @@ import { getDashboardStatsRoute } from "./routes/dashboard"
 import { getDashboardStatsHandler } from "./handlers/dashboard"
 import { postUsersMeRoute } from "./routes/users"
 import { postUsersMeHandler } from "./handlers/users"
-import { postCollectionEntryRoute } from "./routes/collection"
-import { postCollectionEntryHandler } from "./handlers/collection"
+import { postCollectionEntryRoute, getCollectionEntriesRoute, deleteCollectionEntryRoute } from "./routes/collection"
+import { postCollectionEntryHandler, getCollectionEntriesHandler, deleteCollectionEntryHandler } from "./handlers/collection"
 
 const app = new OpenAPIHono<{ Bindings: CloudflareBindings }>({
   defaultHook: (result, c) => {
@@ -63,6 +63,8 @@ const routes = app
   .openapi(patchExpenseRoute, patchExpenseHandler)
   .openapi(deleteExpenseRoute, deleteExpenseHandler)
   .openapi(postCollectionEntryRoute, postCollectionEntryHandler)
+  .openapi(getCollectionEntriesRoute, getCollectionEntriesHandler)
+  .openapi(deleteCollectionEntryRoute, deleteCollectionEntryHandler)
 
 // OpenAPI docs
 app.doc("/doc", {

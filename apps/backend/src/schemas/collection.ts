@@ -19,3 +19,25 @@ export const CollectionEntryResponseSchema = z
     createdAt: z.string().openapi({ example: "2026-04-07T00:00:00.000Z" }),
   })
   .openapi("CollectionEntry")
+
+export const CollectionEntryWithCardSchema = z
+  .object({
+    id: z.number(),
+    cardId: z.number(),
+    condition: z.enum(conditionValues),
+    variant: z.string().nullable(),
+    customValue: z.number().nullable(),
+    acquiredAt: z.string(),
+    notes: z.string().nullable(),
+    createdAt: z.string(),
+    name: z.string(),
+    localId: z.string(),
+    game: z.string(),
+    setName: z.string(),
+    rarity: z.string().nullable(),
+    imageUrl: z.string().nullable(),
+    marketPrice: z.number().nullable(),
+  })
+  .openapi("CollectionEntryWithCard")
+
+export { conditionValues }
