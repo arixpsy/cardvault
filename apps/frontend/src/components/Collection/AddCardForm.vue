@@ -49,7 +49,7 @@ function onSubmit() {
       setId: props.card.set.id,
       setName: props.card.set.name,
       rarity: props.card.rarity ?? undefined,
-      imageUrl: props.card.image ? `${props.card.image}/high.webp` : undefined,
+      imageUrl: props.card.image ? `${props.card.image}` : undefined,
       condition: condition.value as Condition,
       variant: variant.value || undefined,
       customValue: useCustomValue.value && customValue.value ? Number(customValue.value) : undefined,
