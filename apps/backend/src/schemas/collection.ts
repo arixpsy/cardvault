@@ -4,14 +4,13 @@ import { createCollectionEntrySchema, Condition } from "@repo/shared"
 export const CreateCollectionEntryBodySchema =
   createCollectionEntrySchema.openapi("CreateCollectionEntryBody")
 
-const conditionValues = Object.values(Condition) as [Condition, ...Condition[]]
 
 export const CollectionEntryResponseSchema = z
   .object({
     id: z.number().openapi({ example: 1 }),
     userId: z.string().openapi({ example: "user_abc123" }),
     cardId: z.number().openapi({ example: 42 }),
-    condition: z.enum(conditionValues).openapi({ example: Condition.NM }),
+    condition: z.enum(Condition).openapi({ example: Condition.NM }),
     variant: z.string().nullable().openapi({ example: "Reverse Holo" }),
     customValue: z.number().nullable().openapi({ example: 12.5 }),
     acquiredAt: z.string().openapi({ example: "2026-04-07" }),
@@ -24,7 +23,7 @@ export const CollectionEntryWithCardSchema = z
   .object({
     id: z.number(),
     cardId: z.number(),
-    condition: z.enum(conditionValues),
+    condition: z.enum(Condition),
     variant: z.string().nullable(),
     customValue: z.number().nullable(),
     acquiredAt: z.string(),
@@ -40,4 +39,3 @@ export const CollectionEntryWithCardSchema = z
   })
   .openapi("CollectionEntryWithCard")
 
-export { conditionValues }

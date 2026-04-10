@@ -1,7 +1,7 @@
 import { and, asc, desc, eq, ilike, isNull } from "drizzle-orm"
 import { getDb } from "../db/client"
 import { cardsTable, collectionEntriesTable } from "../db/schema"
-import { type CreateCollectionEntryInput, type Condition } from "@repo/shared"
+import { type CreateCollectionEntryInput, type Condition, CollectionSortOption } from "@repo/shared"
 
 interface AddToCollectionParams extends CreateCollectionEntryInput {
   userId: string
@@ -14,12 +14,12 @@ export async function getCollectionEntries(
     limit?: number
     offset?: number
     search?: string
-    condition?: string
-    sort?: string
+    condition?: Condition
+    sort?: CollectionSortOption
   } = {},
 ) {
   const db = getDb(env)
-  const { limit = 50, offset = 0, search, condition, sort = "date-desc" } = opts
+  const { limit = 50, offset = 0, search, condition, sort = CollectionSortOption.DATE_DESC } = opts
 
   const conditions = [
     eq(collectionEntriesTable.userId, userId),
@@ -28,7 +28,7 @@ export async function getCollectionEntries(
   if (search) conditions.push(ilike(cardsTable.name, `%${search}%`))
   if (condition) conditions.push(eq(collectionEntriesTable.condition, condition as Condition))
 
-  const sortMap: Record<string, any> = {
+  const sortMap: Record<CollectionSortOption, any> = {
     "date-desc": desc(collectionEntriesTable.createdAt),
     "date-asc": asc(collectionEntriesTable.createdAt),
     "name-asc": asc(cardsTable.name),

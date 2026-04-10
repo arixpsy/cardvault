@@ -38,11 +38,18 @@ export const Game = {
 
 export type Game = (typeof Game)[keyof typeof Game]
 
-const conditionValues = Object.values(Condition) as [Condition, ...Condition[]]
-const gameValues = Object.values(Game) as [Game, ...Game[]]
+export const CollectionSortOption = {
+  DATE_DESC: "date-desc",
+  DATE_ASC: "date-asc",
+  NAME_ASC: "name-asc",
+  VALUE_DESC: "value-desc",
+  VALUE_ASC: "value-asc",
+} as const
+
+export type CollectionSortOption = (typeof CollectionSortOption)[keyof typeof CollectionSortOption]
 
 export const createCollectionEntrySchema = z.object({
-  game: z.enum(gameValues),
+  game: z.enum(Game),
   externalId: z.string().max(100),
   localId: z.string().max(20),
   name: z.string().max(255),
@@ -50,7 +57,7 @@ export const createCollectionEntrySchema = z.object({
   setName: z.string().max(255),
   rarity: z.string().max(100).optional(),
   imageUrl: z.string().optional(),
-  condition: z.enum(conditionValues),
+  condition: z.enum(Condition),
   variant: z.string().max(100).optional(),
   customValue: z.coerce.number().positive().optional(),
   notes: z.string().max(255).optional(),

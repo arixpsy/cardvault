@@ -2,11 +2,12 @@ import { computed, type Ref } from "vue"
 import { useInfiniteQuery } from "@tanstack/vue-query"
 import { getCollectionEntries } from "../services/collection"
 import { queryKeys } from "../utils/queryKeys"
+import type { CollectionSortOption, Condition } from "@repo/shared"
 
 const PAGE_SIZE = 50
 
 export function useCollection(
-  filters: Ref<{ search?: string; condition?: string; sort?: string }> = computed(() => ({})),
+  filters: Ref<{ search?: string; condition?: Condition; sort?: CollectionSortOption }> = computed(() => ({})),
 ) {
   return useInfiniteQuery({
     queryKey: computed(() => queryKeys.collection.list(filters.value)),

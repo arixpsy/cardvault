@@ -1,5 +1,5 @@
 import { hcWithType } from "@repo/backend/hc"
-import type { Condition, CreateCollectionEntryInput } from "@repo/shared"
+import type { CollectionSortOption, Condition, CreateCollectionEntryInput } from "@repo/shared"
 
 const client = hcWithType(import.meta.env.VITE_API_URL || "/api")
 
@@ -10,7 +10,7 @@ export async function addCardToCollection(data: CreateCollectionEntryInput) {
 }
 
 export async function getCollectionEntries(
-  params: { limit?: number; offset?: number; search?: string; condition?: Condition; sort?: string } = {},
+  params: { limit?: number; offset?: number; search?: string; condition?: Condition; sort?: CollectionSortOption } = {},
 ) {
   const res = await client.collection.$get({ query: params })
   if (!res.ok) throw new Error(await res.text())

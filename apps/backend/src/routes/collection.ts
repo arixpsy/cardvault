@@ -3,9 +3,9 @@ import {
   CreateCollectionEntryBodySchema,
   CollectionEntryResponseSchema,
   CollectionEntryWithCardSchema,
-  conditionValues,
 } from "../schemas/collection"
 import { errorResponses } from "../lib/routes"
+import { CollectionSortOption, Condition } from "@repo/shared"
 
 export const postCollectionEntryRoute = createRoute({
   method: "post",
@@ -48,10 +48,10 @@ export const getCollectionEntriesRoute = createRoute({
       limit: z.coerce.number().int().min(1).max(100).default(50).optional(),
       offset: z.coerce.number().int().min(0).default(0).optional(),
       search: z.string().optional(),
-      condition: z.enum(conditionValues).optional(),
+      condition: z.enum(Condition).optional(),
       sort: z
-        .enum(["date-desc", "date-asc", "name-asc", "value-desc", "value-asc"]) // TODO: convert to enum object in @shared repo
-        .default("date-desc")
+        .enum(CollectionSortOption)
+        .default(CollectionSortOption.DATE_DESC)
         .optional(),
     }),
   },

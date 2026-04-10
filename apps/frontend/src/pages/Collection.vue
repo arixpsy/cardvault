@@ -6,11 +6,12 @@ import AddCardButton from "../components/Collection/AddCardButton.vue"
 import CollectionContent from "../components/Collection/CollectionContent.vue"
 import { useCollection } from "../hooks/useCollection"
 import { useDeleteCollectionEntry } from "../hooks/useDeleteCollectionEntry"
+import { CollectionSortOption } from "@repo/shared"
 
 const search = ref("")
 const debouncedSearch = ref("")
-const condition = ref("")
-const sort = ref("date-desc")
+const condition = ref(undefined)
+const sort = ref(CollectionSortOption.DATE_DESC)
 
 let debounceTimer: ReturnType<typeof setTimeout>
 watch(search, (val) => {

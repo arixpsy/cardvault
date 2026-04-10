@@ -5,6 +5,7 @@ import * as Form from "../Form"
 import CollectionGrid from "./CollectionGrid.vue"
 import CollectionList from "./CollectionList.vue"
 import ConfirmModal from "../Common/ConfirmModal.vue"
+import { CollectionSortOption } from "@repo/shared"
 
 interface CollectionEntry {
   id: number
@@ -39,7 +40,7 @@ const emit = defineEmits<{
 
 const search = defineModel<string>("search", { default: "" })
 const condition = defineModel<string>("condition", { default: "" })
-const sort = defineModel<string>("sort", { default: "date-desc" })
+const sort = defineModel<string>("sort", { default: CollectionSortOption.DATE_DESC })
 
 const view = ref<"grid" | "list">("grid")
 const sentinel = ref<HTMLElement | null>(null)
@@ -98,6 +99,7 @@ onUnmounted(() => {
       </Form.Input>
 
       <Form.Select v-model="condition" :block="false">
+        <!-- TODO: create enum to label mapping on FE -->
         <option value="">All Conditions</option>
         <option value="NM">Near Mint</option>
         <option value="LP">Lightly Played</option>
@@ -107,6 +109,7 @@ onUnmounted(() => {
       </Form.Select>
 
       <Form.Select v-model="sort" :block="false">
+        <!-- TODO: create enum to label mapping on FE -->
         <option value="date-desc">Recently Added</option>
         <option value="date-asc">Oldest First</option>
         <option value="name-asc">Name A-Z</option>
