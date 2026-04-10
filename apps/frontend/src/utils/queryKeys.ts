@@ -16,5 +16,7 @@ export const queryKeys = {
   },
   collection: {
     all: () => ["collection"] as const,
+    list: (filters?: Record<string, string | undefined>) =>
+      ["collection", "list", filters] as const,
   },
 }
