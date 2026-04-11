@@ -1,24 +1,25 @@
 <script setup lang="ts">
-import { useUser } from "@clerk/vue"
+import { useAuth, useUser } from "@clerk/vue"
 import { watch } from "vue"
+import PageContent from "../components/Common/PageContent.vue"
+import PageHeader from "../components/Common/PageHeader.vue"
 import CardCarousel from "../components/Dashboard/CardCarousel.vue"
 import StatsView from "../components/Dashboard/StatsView.vue"
 import DashboardSparkles from "../components/Dashboard/DashboardSparkles.vue"
-// import RecentActivity from "../components/Dashboard/RecentActivity.vue"
-// import TopByValue from "../components/Dashboard/TopByValue.vue"
-import PageContent from "../components/Common/PageContent.vue"
-import PageHeader from "../components/Common/PageHeader.vue"
-import { useDashboardStats } from "../hooks/useDashboardStats"
+import { useDashboardStats } from "../hooks/useDashboard"
+import { useApiClient } from "../utils/honoClient"
 import { upsertCurrentUser } from "../services/users"
 
-const { user, isLoaded } = useUser()
 const { data: stats, isLoading: statsLoading } = useDashboardStats()
+const { user, isLoaded } = useUser()
+const { getToken } = useAuth()
+const client = useApiClient(getToken.value)
 
 watch(
   [isLoaded, user],
   ([loaded, u]) => {
     if (!loaded || !u) return
-    upsertCurrentUser({
+    upsertCurrentUser(client, {
       name: u.fullName ?? u.firstName ?? "",
       email: u.primaryEmailAddress?.emailAddress ?? "",
     })
@@ -50,11 +51,7 @@ watch(
   <PageContent>
     <PageHeader title="Overview" description="Recent Activity & Stats" />
 
-    <div class="overview-grid">
-      <RecentActivity />
-
-      <TopByValue />
-    </div>
+    <div class="overview-grid"></div>
   </PageContent>
 </template>
 

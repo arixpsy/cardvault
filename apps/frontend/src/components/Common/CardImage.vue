@@ -38,7 +38,12 @@ const loaded = ref(false)
 .card-placeholder {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(45, 45, 224, 0.5) 0%, rgba(85, 85, 255, 0.45) 50%, rgba(136, 68, 238, 0.4) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(45, 45, 224, 0.5) 0%,
+    rgba(85, 85, 255, 0.45) 50%,
+    rgba(136, 68, 238, 0.4) 100%
+  );
   display: flex;
   align-items: center;
   justify-content: center;

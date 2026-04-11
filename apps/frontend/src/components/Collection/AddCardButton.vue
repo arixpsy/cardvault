@@ -89,12 +89,7 @@ onUnmounted(() => observer?.disconnect())
       <SearchError v-else-if="isError" />
       <div v-else-if="results.length > 0" class="results-scroll">
         <ul class="results-grid">
-          <li
-            v-for="card in results"
-            :key="card.id"
-            class="result-tile"
-            @click="selectCard(card)"
-          >
+          <li v-for="card in results" :key="card.id" class="result-tile" @click="selectCard(card)">
             <CardTile :card="card" />
           </li>
         </ul>

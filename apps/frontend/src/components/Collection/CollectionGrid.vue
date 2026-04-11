@@ -54,7 +54,8 @@ function rarityShort(rarity: string): string {
 
 function rarityClass(rarity: string): string {
   const r = rarity.toLowerCase()
-  if (r.includes("secret") || r.includes("hyper") || r.includes("special illustration")) return "rarity-secret"
+  if (r.includes("secret") || r.includes("hyper") || r.includes("special illustration"))
+    return "rarity-secret"
   if (r.includes("ultra") || r.includes("illustration")) return "rarity-ultra"
   if (r.includes("rare") || r.includes("double")) return "rarity-rare"
   if (r.includes("uncommon")) return "rarity-uncommon"
@@ -70,11 +71,7 @@ function rarityClass(rarity: string): string {
           :src="entry.imageUrl ? `${entry.imageUrl}/high.webp` : undefined"
           :alt="entry.name"
         />
-        <span
-          v-if="entry.rarity"
-          class="rarity-badge"
-          :class="rarityClass(entry.rarity)"
-        >
+        <span v-if="entry.rarity" class="rarity-badge" :class="rarityClass(entry.rarity)">
           {{ rarityShort(entry.rarity) }}
         </span>
       </div>
@@ -104,7 +101,9 @@ function rarityClass(rarity: string): string {
   background: var(--surface);
   border-radius: 12px;
   overflow: hidden;
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
 .coll-card:hover {

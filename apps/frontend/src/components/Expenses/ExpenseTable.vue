@@ -199,14 +199,13 @@ onUnmounted(() => {
         <Loader2 class="spinner" />
       </div>
       <template v-else>
-        <div v-if="filteredExpenses.length === 0 && !isFetchingNextPage" class="list-state list-empty">
+        <div
+          v-if="filteredExpenses.length === 0 && !isFetchingNextPage"
+          class="list-state list-empty"
+        >
           No expenses found
         </div>
-        <div
-          v-for="expense in filteredExpenses"
-          :key="expense.id"
-          class="expense-card"
-        >
+        <div v-for="expense in filteredExpenses" :key="expense.id" class="expense-card">
           <!-- Row 1: name + badge -->
           <div class="card-top">
             <span class="card-name">{{ expense.expenseName }}</span>

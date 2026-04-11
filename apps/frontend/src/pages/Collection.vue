@@ -1,12 +1,11 @@
 <script setup lang="ts">
+import { CollectionSortOption } from "@repo/shared"
 import { computed, ref, watch } from "vue"
 import PageContent from "../components/Common/PageContent.vue"
 import PageHeader from "../components/Common/PageHeader.vue"
 import AddCardButton from "../components/Collection/AddCardButton.vue"
 import CollectionContent from "../components/Collection/CollectionContent.vue"
-import { useCollection } from "../hooks/useCollection"
-import { useDeleteCollectionEntry } from "../hooks/useDeleteCollectionEntry"
-import { CollectionSortOption } from "@repo/shared"
+import { useCollection, useDeleteCollectionEntry } from "../hooks/useCollection"
 
 const search = ref("")
 const debouncedSearch = ref("")
@@ -16,7 +15,9 @@ const sort = ref(CollectionSortOption.DATE_DESC)
 let debounceTimer: ReturnType<typeof setTimeout>
 watch(search, (val) => {
   clearTimeout(debounceTimer)
-  debounceTimer = setTimeout(() => { debouncedSearch.value = val }, 300)
+  debounceTimer = setTimeout(() => {
+    debouncedSearch.value = val
+  }, 300)
 })
 
 const filters = computed(() => ({

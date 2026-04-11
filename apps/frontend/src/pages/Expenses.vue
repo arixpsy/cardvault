@@ -5,9 +5,7 @@ import PageHeader from "../components/Common/PageHeader.vue"
 import AddExpenseButton from "../components/Expenses/AddExpenseButton.vue"
 import ExpenseStatsCards from "../components/Expenses/ExpenseStatsCards.vue"
 import ExpenseTable from "../components/Expenses/ExpenseTable.vue"
-import { useExpenses } from "../hooks/useExpenses"
-import { useDeleteExpense } from "../hooks/useDeleteExpense"
-import { useExpenseStats } from "../hooks/useExpenseStats"
+import { useExpenses, useExpenseStats, useDeleteExpense } from "../hooks/useExpenses"
 
 const search = ref("")
 const debouncedSearch = ref("")
@@ -16,7 +14,9 @@ const category = ref("")
 let debounceTimer: ReturnType<typeof setTimeout>
 watch(search, (val) => {
   clearTimeout(debounceTimer)
-  debounceTimer = setTimeout(() => { debouncedSearch.value = val }, 300)
+  debounceTimer = setTimeout(() => {
+    debouncedSearch.value = val
+  }, 300)
 })
 
 const filters = computed(() => ({

@@ -1,12 +1,12 @@
 <script lang="ts" setup>
-import { ref, computed } from "vue"
-import type { Card } from "@tcgdex/sdk"
-import { ArrowLeft } from "@lucide/vue"
 import { Condition, Game } from "@repo/shared"
+import { ArrowLeft } from "@lucide/vue"
+import type { Card } from "@tcgdex/sdk"
+import { ref, computed } from "vue"
 import Button from "../Common/Button.vue"
 import CardImage from "../Common/CardImage.vue"
 import * as Form from "../Form"
-import { useAddToCollection } from "../../hooks/useAddToCollection"
+import { useAddToCollection } from "../../hooks/useCollection"
 
 const props = defineProps<{
   card: Card
@@ -52,7 +52,8 @@ function onSubmit() {
       imageUrl: props.card.image ? `${props.card.image}` : undefined,
       condition: condition.value as Condition,
       variant: variant.value || undefined,
-      customValue: useCustomValue.value && customValue.value ? Number(customValue.value) : undefined,
+      customValue:
+        useCustomValue.value && customValue.value ? Number(customValue.value) : undefined,
       notes: notes.value || undefined,
     },
     { onSuccess: () => emit("added") },
@@ -69,10 +70,7 @@ function onSubmit() {
 
     <div class="card-preview">
       <div class="card-image-wrap">
-        <CardImage
-          :src="card.image ? `${card.image}/high.webp` : undefined"
-          :alt="card.name"
-        />
+        <CardImage :src="card.image ? `${card.image}/high.webp` : undefined" :alt="card.name" />
       </div>
 
       <div class="card-details">
@@ -186,7 +184,6 @@ function onSubmit() {
   flex-shrink: 0;
   width: 110px;
 }
-
 
 .card-details {
   display: flex;

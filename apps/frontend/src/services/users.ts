@@ -1,7 +1,6 @@
-import { useApiClient } from "../utils/honoClient"
+import type { Client } from "@repo/backend/hc"
 
-export async function upsertCurrentUser(data: { name: string; email: string }) {
-  const client = useApiClient()
+export async function upsertCurrentUser(client: Client, data: { name: string; email: string }) {
   const res = await client.users.me.$post({ json: data })
   if (!res.ok) throw new Error(await res.text())
   return res.json()

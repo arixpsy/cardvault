@@ -35,7 +35,8 @@ function formatPrice(n: number | null) {
 
 function rarityClass(rarity: string): string {
   const r = rarity.toLowerCase()
-  if (r.includes("secret") || r.includes("hyper") || r.includes("special illustration")) return "rarity-secret"
+  if (r.includes("secret") || r.includes("hyper") || r.includes("special illustration"))
+    return "rarity-secret"
   if (r.includes("ultra") || r.includes("illustration")) return "rarity-ultra"
   if (r.includes("rare") || r.includes("double")) return "rarity-rare"
   if (r.includes("uncommon")) return "rarity-uncommon"
@@ -55,11 +56,7 @@ function rarityClass(rarity: string): string {
       <div class="list-info">
         <div class="list-name">
           {{ entry.name }}
-          <span
-            v-if="entry.rarity"
-            class="rarity-badge-inline"
-            :class="rarityClass(entry.rarity)"
-          >
+          <span v-if="entry.rarity" class="rarity-badge-inline" :class="rarityClass(entry.rarity)">
             {{ entry.rarity }}
           </span>
         </div>

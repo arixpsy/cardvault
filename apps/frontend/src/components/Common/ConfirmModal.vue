@@ -109,7 +109,9 @@ onUnmounted(() => {
   padding: 32px 28px 24px;
   width: 100%;
   max-width: 380px;
-  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 24px 64px rgba(0, 0, 0, 0.16),
+    0 0 0 1px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,7 +186,9 @@ onUnmounted(() => {
 /* ── Modal scale + fade transition ── */
 .modal-enter-active,
 .modal-leave-active {
-  transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .modal-enter-from,

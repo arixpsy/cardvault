@@ -142,12 +142,23 @@ onUnmounted(() => {
       <Loader2 class="spinner" />
     </div>
     <template v-else>
-      <div v-if="entries.length === 0 && !isFetchingNextPage" class="collection-state collection-empty">
+      <div
+        v-if="entries.length === 0 && !isFetchingNextPage"
+        class="collection-state collection-empty"
+      >
         No cards in collection
       </div>
 
-      <CollectionGrid v-if="view === 'grid' && entries.length > 0" :entries="entries" @delete="requestDelete" />
-      <CollectionList v-else-if="view === 'list' && entries.length > 0" :entries="entries" @delete="requestDelete" />
+      <CollectionGrid
+        v-if="view === 'grid' && entries.length > 0"
+        :entries="entries"
+        @delete="requestDelete"
+      />
+      <CollectionList
+        v-else-if="view === 'list' && entries.length > 0"
+        :entries="entries"
+        @delete="requestDelete"
+      />
 
       <div v-if="isFetchingNextPage" class="collection-state">
         <Loader2 class="spinner" />

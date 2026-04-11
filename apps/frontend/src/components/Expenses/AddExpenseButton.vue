@@ -7,7 +7,7 @@ import { createExpenseSchema, Category } from "@repo/shared"
 import Button from "../Common/Button.vue"
 import SlidePanel from "../Common/SlidePanel.vue"
 import * as Form from "../Form"
-import { useCreateExpense } from "../../hooks/useCreateExpense"
+import { useCreateExpense } from "../../hooks/useExpenses"
 
 const open = ref(false)
 const openPanel = () => (open.value = true)
