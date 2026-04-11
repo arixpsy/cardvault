@@ -3,7 +3,7 @@ import { z } from "@hono/zod-openapi"
 export const UpsertUserBodySchema = z
   .object({
     name: z.string().max(255).openapi({ example: "John Doe" }),
-    email: z.string().email().max(255).openapi({ example: "john@example.com" }),
+    email: z.email().max(255).openapi({ example: "john@example.com" }),
   })
   .openapi("UpsertUserBody")
 

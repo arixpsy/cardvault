@@ -1,9 +1,9 @@
 import { z } from "@hono/zod-openapi"
 import { createCollectionEntrySchema, Condition } from "@repo/shared"
 
-export const CreateCollectionEntryBodySchema =
-  createCollectionEntrySchema.openapi("CreateCollectionEntryBody")
-
+export const CreateCollectionEntryBodySchema = createCollectionEntrySchema.openapi(
+  "CreateCollectionEntryBody",
+)
 
 export const CollectionEntryResponseSchema = z
   .object({
@@ -38,4 +38,3 @@ export const CollectionEntryWithCardSchema = z
     marketPrice: z.number().nullable(),
   })
   .openapi("CollectionEntryWithCard")
-

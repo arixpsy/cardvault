@@ -49,10 +49,7 @@ export const getCollectionEntriesRoute = createRoute({
       offset: z.coerce.number().int().min(0).default(0).optional(),
       search: z.string().optional(),
       condition: z.enum(Condition).optional(),
-      sort: z
-        .enum(CollectionSortOption)
-        .default(CollectionSortOption.DATE_DESC)
-        .optional(),
+      sort: z.enum(CollectionSortOption).default(CollectionSortOption.DATE_DESC).optional(),
     }),
   },
   responses: {
